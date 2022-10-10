@@ -22,8 +22,28 @@ function* registerUser(action) {
   }
 }
 
+//  Generator function initially called from the user page
+//  on the registration form in order to register a new
+//  child account
+function* registerChild(action) {
+  console.log('In register child SAGA', action.payload.parent_id);
+  const id = action.payload.parent_id;
+  try {
+    // clear any existing error on the registration page
+    yield put({ type: 'CLEAR_REGISTRATION_ERROR' });
+
+    // passes the username and password from the payload to the server
+    yield axios.post(`/api/user/register/${id}`, action.payload);
+    yield put({ type: 'FETCH_CHILDREN', payload: id });
+  } catch (error) {
+    console.log('Error with user registration:', error);
+    yield put({ type: 'REGISTRATION_FAILED' });
+  }
+}
+
 function* registrationSaga() {
-  yield takeLatest('REGISTER', registerUser);
+  yield takeLatest('REGISTER', registerUser),
+  yield takeLatest('REGISTER_CHILD', registerChild);
 }
 
 export default registrationSaga;
