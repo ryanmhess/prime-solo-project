@@ -97,10 +97,10 @@ Form Treatment
 
 .formPanel {
   box-sizing: border-box;
-  width: 400px;
   max-width: 100%;
-  padding: 25px;
-  margin: 0 auto 20px;
+  padding: 2em;
+  margin: 50% 10%;
+  position: absolute;
   background-color: #efefef;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
@@ -109,4 +109,38 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+}
+
+/* --------------------------------------------------------------------------------
+Bottom Nav Bar
+-------------------------------------------------------------------------------- */
+
+.mobile-nav {
+  background: #F1F1F1;
+  position: fixed;
+  bottom: 0;
+  height: 65px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.mobile-nav-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 150px;
+  font-size: larger;
+}
+.mobile-nav:hover {
+  background: rgba(0, 0, 0, 0.15);
+}
+
+/* --------------------------------------------------------------------------------
+Title Background
+-------------------------------------------------------------------------------- */
+
+body {
+  background-color: aquamarine;
 }

@@ -14,7 +14,7 @@ function RegisterPage() {
   };
 
   return (
-    <div>
+    <div className="titleBack">
       <RegisterForm />
       <nav className="mobile-nav">
         <button className="mobile-nav-btn" onClick={loginPage}>

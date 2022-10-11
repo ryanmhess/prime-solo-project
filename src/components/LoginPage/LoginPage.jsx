@@ -9,7 +9,7 @@ function LoginPage() {
   const registrationPage = () => { history.push('/registration') };
 
   return (
-    <div>
+    <div className="titleBack">
       <LoginForm />
       <nav className="mobile-nav">
         <button className="mobile-nav-btn" onClick={titlePage}>

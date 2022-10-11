@@ -1,6 +1,5 @@
 import React from 'react';
 import { useHistory } from 'react-router-dom';
-import './TitlePage.css';
 
 function TitlePage() {
   
@@ -14,7 +13,7 @@ function TitlePage() {
   };
 
   return (
-    <div>
+    <div className="titleBack">
       <h2>Title Page</h2>
       <nav className="mobile-nav">
         <button className="mobile-nav-btn" onClick={loginPage}>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import Nav from '../Nav/Nav';
+// import Nav from '../Nav/Nav';
 // import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
@@ -13,13 +13,13 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import './App.css';
 
 function App() {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 
 	const user = useSelector(store => store.user);
 
-	// useEffect(() => {
-	// 	dispatch({ type: 'FETCH_USER' });
-	// }, [dispatch]);
+	useEffect(() => {
+		dispatch({ type: 'FETCH_USER' });
+	}, [dispatch]);
 
 	return (
 		<Router>
@@ -41,22 +41,19 @@ function App() {
 						{/* If the user is already logged in, redirect them to the /user page Otherwise, show the registration page */}
 						{user.id ? <Redirect to="/user" /> : <RegisterPage /> }
 					</Route>
-					
+
+					<ProtectedRoute exact path="/user" >	
+            {/* logged in shows UserPage else shows TitlePage */}
+						<UserPage />
+					</ProtectedRoute>
+          
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
 						{/* Visiting localhost:3000/about will show the about page. */}
 						<AboutPage />
 					</Route>
 
-						{/* For protected routes, the view could show one of several things on the same route.
-						Visiting localhost:3000/user will show the UserPage if the user is logged in.
-						If the user is not logged in, the ProtectedRoute will show the LoginPage (component).
-						Even though it seems like they are different pages, the user is always on localhost:3000/user */}
-					<ProtectedRoute exact path="/user" >	
-            {/* logged in shows UserPage else shows LoginPage */}
-						<UserPage />
-					</ProtectedRoute>
 					<ProtectedRoute exact path="/info" >	
-            {/* logged in shows InfoPage else shows LoginPage */}
+            {/* logged in shows InfoPage else shows TitlePage */}
 						<InfoPage />
 					</ProtectedRoute>
 					<Route>

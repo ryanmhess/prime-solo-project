@@ -3,6 +3,7 @@ import axios from 'axios';
 
 // worker Saga: will be fired on "LOGIN" actions
 function* loginUser(action) {
+  
   try {
     // clear any existing error on the login page
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
@@ -11,7 +12,7 @@ function* loginUser(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
+    console.log('login payload AFTER clear login error:', action.payload);
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
