@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
-import AboutPage from '../AboutPage/AboutPage';
-import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
-import TitlePage from '../TitlePage/TitlePage';
-import LoginPage from '../LoginPage/LoginPage';
-import RegisterPage from '../RegisterPage/RegisterPage';
-import FamilyPage from '../FamilyPage/FamilyPage';
-import FamilyAddPage from '../FamilyAddPage/FamilyAddPage';
+import AboutPage from '../AboutPage/AboutPage'; //  Not using this at the moment
+import UserPage from '../UserPage/UserPage';  //  Similar to TitlePage - Nav to Quest and Family(parent only)
+import InfoPage from '../InfoPage/InfoPage';  //  Not using this at the moment
+import TitlePage from '../TitlePage/TitlePage'; //  Basic Landing Page - Nav to Login and Registration
+import LoginPage from '../LoginPage/LoginPage'; //  Where users login - Nav to Title and Registration
+import RegisterPage from '../RegisterPage/RegisterPage';  //  Where new users register - Nav to Title and Login
+import FamilyPage from '../FamilyPage/FamilyPage';  //  List of child accounts - Nav to User and FamilyAdd
+import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
 import './App.css';
 
 function App() {
