@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 //  function that handles the removal of child account from db
-function RemoveChild({ child }) {
+function FamilyItem({ child }) {
 
     const userId = useSelector((store) => store.user.id);
     const dispatch = useDispatch();
@@ -26,4 +26,4 @@ function RemoveChild({ child }) {
     )
 }
 
-export default RemoveChild;
+export default FamilyItem;
