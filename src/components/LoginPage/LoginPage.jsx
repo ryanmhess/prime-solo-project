@@ -1,25 +1,24 @@
 import React from 'react';
-import LoginForm from '../LoginForm/LoginForm';
 import { useHistory } from 'react-router-dom';
+import LoginForm from '../LoginForm/LoginForm';
 
 function LoginPage() {
+
   const history = useHistory();
+  const titlePage = () => { history.push('/title') };
+  const registrationPage = () => { history.push('/registration') };
 
   return (
     <div>
       <LoginForm />
-
-      <center>
-        <button
-          type="button"
-          className="btn btn_asLink"
-          onClick={() => {
-            history.push('/registration');
-          }}
-        >
+      <nav className="mobile-nav">
+        <button className="mobile-nav-btn" onClick={titlePage}>
+          Back
+        </button>
+        <button className="mobile-nav-btn" onClick={registrationPage}>
           Register
         </button>
-      </center>
+      </nav> 
     </div>
   );
 }
