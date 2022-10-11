@@ -6,12 +6,8 @@ function RegisterPage() {
   
   const history = useHistory();
   
-  const loginPage = () => {
-    history.push('/login');
-  };
-  const titlePage = () => {
-    history.push('/title');
-  };
+  const loginPage = () => { history.push('/login') };
+  const titlePage = () => { history.push('/title') };
 
   return (
     <div className="titleBack">

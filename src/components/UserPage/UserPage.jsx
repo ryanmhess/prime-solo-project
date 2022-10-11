@@ -1,49 +1,34 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import RemoveChild from './RemoveChild';
-import RegisterChild from './RegisterChild';
 
 function UserPage() {
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch({
-			type: 'FETCH_CHILDREN',
-			payload: userId,
-		})
-	}, []);
+	
+	const history = useHistory();
+	
 	const user = useSelector((store) => store.user);
-	const userId = useSelector((store) => store.user.id);
-	const children = useSelector((store) => store.children);
+
+	const familyPage = () => { history.push('/family') };
+
 	return (
-		<div className="container">
+		<div>
 			<h2>Welcome, {user.username}!</h2>
 			<p>Your ID is: {user.id}</p>
 			<p>
-                Account Type: {user.is_parent ? "Parent" : "Child"}
-            </p>
-			<div className="childContainer">
-                {user.is_parent ? 
-                    <table className="childItem">
-                        <thead>
-                            <tr>
-                                <th>Children</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {children.map(child => (
-                            <tr key={child.id}>
-                                <RemoveChild child={child}/>
-                            </tr>
-                            ))}
-                        </tbody>
-                    </table>
-                : ""}    
-                {user.is_parent ? 
-                    <RegisterChild />
-                : ""}  
-            </div>
+				Account Type: {user.is_parent ? "Parent" : "Child"}
+			</p>
 			<LogOutButton className="btn" />
+			<nav className="mobile-nav">
+					<button className="mobile-nav-btn" >
+					Quest
+					</button>
+					{user.is_parent ?
+						<button className="mobile-nav-btn" onClick={familyPage}>
+						Family
+						</button>
+					: ""}
+			</nav>  
 		</div>
 	);
 }

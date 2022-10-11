@@ -1,8 +1,6 @@
 import React, { useEffect } from 'react';
 import { HashRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-// import Nav from '../Nav/Nav';
-// import Footer from '../Footer/Footer';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
@@ -10,6 +8,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import TitlePage from '../TitlePage/TitlePage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import FamilyPage from '../FamilyPage/FamilyPage';
+import FamilyAddPage from '../FamilyAddPage/FamilyAddPage';
 import './App.css';
 
 function App() {
@@ -46,7 +46,15 @@ function App() {
             {/* logged in shows UserPage else shows TitlePage */}
 						<UserPage />
 					</ProtectedRoute>
-          
+          <ProtectedRoute exact path="/family" >	
+            {/* logged in shows FamilyPage else shows TitlePage */}
+						{!user.is_parent ? <Redirect to="/user" /> : <FamilyPage /> }
+					</ProtectedRoute>
+          <ProtectedRoute exact path="/family/add" >	
+            {/* logged in shows FamilyPage else shows TitlePage */}
+						{!user.is_parent ? <Redirect to="/user" /> : <FamilyAddPage /> }
+					</ProtectedRoute>
+
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
 						{/* Visiting localhost:3000/about will show the about page. */}
 						<AboutPage />
