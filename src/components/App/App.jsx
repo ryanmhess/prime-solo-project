@@ -10,6 +10,8 @@ import LoginPage from '../LoginPage/LoginPage'; //  Where users login - Nav to T
 import RegisterPage from '../RegisterPage/RegisterPage';  //  Where new users register - Nav to Title and Login
 import FamilyPage from '../FamilyPage/FamilyPage';  //  List of child accounts - Nav to User and FamilyAdd
 import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
+import QuestParent from '../Quest/QuestParent';
+import QuestChild from '../Quest/QuestChild';
 import './App.css';
 
 function App() {
@@ -48,18 +50,25 @@ function App() {
 					</ProtectedRoute>
           <ProtectedRoute exact path="/family" >	
             {/* logged in shows FamilyPage else shows TitlePage */}
-						{!user.is_parent ? <Redirect to="/user" /> : <FamilyPage /> }
+						{user.is_parent ? <FamilyPage /> : <Redirect to="/user" /> }
 					</ProtectedRoute>
           <ProtectedRoute exact path="/family/add" >	
             {/* logged in shows FamilyPage else shows TitlePage */}
-						{!user.is_parent ? <Redirect to="/user" /> : <FamilyAddPage /> }
+						{user.is_parent ? <FamilyAddPage /> : <Redirect to="/user" /> }
 					</ProtectedRoute>
+
+          <Route exact path="/quest" >	
+            {/* logged in shows FamilyPage else shows TitlePage */}
+						{user.is_parent ? <QuestParent /> : <QuestChild /> }
+					</Route>
+
+
+
 
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
 						{/* Visiting localhost:3000/about will show the about page. */}
 						<AboutPage />
 					</Route>
-
 					<ProtectedRoute exact path="/info" >	
             {/* logged in shows InfoPage else shows TitlePage */}
 						<InfoPage />
