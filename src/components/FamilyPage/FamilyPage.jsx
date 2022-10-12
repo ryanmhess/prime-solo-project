@@ -21,7 +21,12 @@ function FamilyPage() {
 			type: 'FETCH_CHILDREN',
 			payload: userId,
 		})
-	}, []);
+		return () => {
+      dispatch({
+        type: 'CLEAR_CHILDREN'
+      })
+    }
+	}, [userId]);
 
 	return (
 	<>

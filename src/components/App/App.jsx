@@ -10,8 +10,8 @@ import LoginPage from '../LoginPage/LoginPage'; //  Where users login - Nav to T
 import RegisterPage from '../RegisterPage/RegisterPage';  //  Where new users register - Nav to Title and Login
 import FamilyPage from '../FamilyPage/FamilyPage';  //  List of child accounts - Nav to User and FamilyAdd
 import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
-import QuestParent from '../Quest/QuestParent';
-import QuestChild from '../Quest/QuestChild';
+import QuestParent from '../QuestParent/QuestParent'; //  List of all children and associated quests - Nav to Home, History and Create
+import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to Home and History
 import './App.css';
 
 function App() {
@@ -57,10 +57,11 @@ function App() {
 						{user.is_parent ? <FamilyAddPage /> : <Redirect to="/user" /> }
 					</ProtectedRoute>
 
-          <Route exact path="/quest" >	
-            {/* logged in shows FamilyPage else shows TitlePage */}
+          <ProtectedRoute exact path="/quest" >	
+            {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
 						{user.is_parent ? <QuestParent /> : <QuestChild /> }
-					</Route>
+					</ProtectedRoute>
+
 
 
 

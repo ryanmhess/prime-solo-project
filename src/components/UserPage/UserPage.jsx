@@ -9,6 +9,7 @@ function UserPage() {
 	
 	const user = useSelector((store) => store.user);
 
+	const questPage = () => { history.push('/quest') };
 	const familyPage = () => { history.push('/family') };
 
 	return (
@@ -20,7 +21,7 @@ function UserPage() {
 			</p>
 			<LogOutButton className="btn" />
 			<nav className="mobile-nav">
-					<button className="mobile-nav-btn" >
+					<button className="mobile-nav-btn" onClick={questPage}>
 					Quest
 					</button>
 					{user.is_parent ?
