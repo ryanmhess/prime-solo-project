@@ -5,10 +5,11 @@ function QuestParentChild({ child }) {
   
   const questText = child.text;
   const questFinish = child.finish;
-  const questComplete = child.complete;
+  const questStart = child.start
+  const questScore = child.score;
 
   const quests = questText.map(function (item, i) {
-    return {text: item, finish: questFinish[i], complete: questComplete[i]}
+    return {text: item, start: questStart[i], finish: questFinish[i], score: questScore[i]}
   })
 
   return (  

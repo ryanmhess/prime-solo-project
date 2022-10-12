@@ -36,7 +36,7 @@ router.get('/parent/details/:id', rejectUnauthenticated, (req, res) => {
 	console.log('In the GET user/children router', req.params.id);
 	const id = req.params.id;
 	const queryText = `
-		SELECT "user".id, "user".username, ARRAY_AGG("category".parent_text) AS text, ARRAY_AGG("quest".complete) AS complete, ARRAY_AGG("quest".finish) AS finish FROM "user"
+		SELECT "user".id, "user".username, ARRAY_AGG("category".parent_text) AS text, ARRAY_AGG("quest".score) AS score, ARRAY_AGG("quest".start) AS start, ARRAY_AGG("quest".finish) AS finish FROM "user"
 			LEFT JOIN "quest"
 				ON "user".id = "quest".child_id
 			LEFT JOIN "category"
