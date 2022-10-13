@@ -130,7 +130,7 @@ Bottom Nav Bar
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 150px;
+  width: 25%;
   font-size: larger;
 }
 .mobile-nav:hover {

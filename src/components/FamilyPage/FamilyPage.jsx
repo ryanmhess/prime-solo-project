@@ -4,7 +4,7 @@ import { useHistory } from 'react-router-dom';
 import FamilyItem from './FamilyItem';
 
 //  function that handles the removal of child account from db
-function FamilyPage({ child }) {
+function FamilyPage() {
 
 	const dispatch = useDispatch();
 	const history = useHistory();
@@ -21,7 +21,12 @@ function FamilyPage({ child }) {
 			type: 'FETCH_CHILDREN',
 			payload: userId,
 		})
-	}, []);
+		return () => {
+      dispatch({
+        type: 'CLEAR_CHILDREN'
+      })
+    }
+	}, [userId]);
 
 	return (
 	<>
