@@ -12,10 +12,13 @@ import FamilyPage from '../FamilyPage/FamilyPage';  //  List of child accounts -
 import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
 import QuestParent from '../QuestParent/QuestParent'; //  List of all children and associated quests - Nav to Home, History and Create
 import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to Home and History
+import DetailsParent from '../DetailsParent/DetailsParent';
+import DetailsChild from '../DetailsChild/DetailsChild';
 import './App.css';
 
 function App() {
-	const dispatch = useDispatch();
+	
+  const dispatch = useDispatch();
 
 	const user = useSelector(store => store.user);
 
@@ -62,8 +65,10 @@ function App() {
 						{user.is_parent ? <QuestParent /> : <QuestChild /> }
 					</ProtectedRoute>
 
-
-
+          <ProtectedRoute exact path="/details/:id" >	
+            {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
+						{user.is_parent ? <DetailsParent /> : <DetailsChild /> }
+					</ProtectedRoute>
 
 
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
