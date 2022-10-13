@@ -7,15 +7,16 @@ function QuestParentChild({ child }) {
   const questFinish = child.finish;
   const questStart = child.start
   const questScore = child.score;
+  const questId = child.qid;
 
   const quests = questText.map(function (item, i) {
-    return {text: item, start: questStart[i], finish: questFinish[i], score: questScore[i]}
+    return {text: item, id: questId[i], start: questStart[i], finish: questFinish[i], score: questScore[i]}
   })
 
   return (  
     <ul>{child.username}
       {quests.map((quest, i) => (
-        <div key={i}>
+        <div key={quest.id}>
           <QuestParentChildItem quest={quest} />
         </div>
       ))}
