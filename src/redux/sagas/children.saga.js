@@ -29,7 +29,7 @@ function* fetchChildrenDetails(action) {
         headers: { 'Content-Type': 'application/json' },
         withCredentials: true,
         };
-        const response = yield axios.get(`/api/user/parent/details/${id}`, config);
+        const response = yield axios.get(`/api/list/parent/${id}`, config);
         yield put({ type: 'SET_CHILDREN_DETAILS', payload: response.data }), console.log('response data:', response.data);
     } catch (error) {
         console.log('User get request failed', error);

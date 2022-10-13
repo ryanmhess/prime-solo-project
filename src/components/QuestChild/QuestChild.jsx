@@ -9,7 +9,7 @@ function QuestChild() {
   const history = useHistory();
 
 	const userId = useSelector((store) => store.user.id);
-  const child = useSelector((store) => store.child[0]);
+  const child = useSelector((store) => store.child);
 
 	const userPage = () => { history.push('/user') };
 
@@ -27,25 +27,25 @@ function QuestChild() {
 
   console.log('user id:', userId);
   console.log('This is CHILD:', child);
-  console.log('This is child name:', child?.username);
+  console.log('This is child name:', child.username);
 
-  const questText = child?.text;
-  const questFinish = child?.finish;
-  const questStart = child?.start
-  const questScore = child?.score;
-  const questId = child?.qid;
+  const questText = child.text || [];
+  const questFinish = child.finish;
+  const questStart = child.start
+  const questScore = child.score;
+  const questId = child.qid;
 
-  const quests = questText?.map(function (item, i) {
+  const quests = questText.map(function (item, i) {
     return ({text: item, id: questId[i], start: questStart[i], finish: questFinish[i], score: questScore[i]})
   })
 
   return (
     <div>
       <h2>Quest Child</h2>
-      {child?.username}
+      {child.username}
       
         <ul>
-        {quests?.map((quest, i) => (
+        {quests.map((quest, i) => (
           <div key={quest.id}>
             <QuestChildItem quest={quest} />
           </div>
