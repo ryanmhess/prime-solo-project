@@ -8,7 +8,6 @@ function QuestParent() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  // const user = useSelector((store) => store.user);
 	const userId = useSelector((store) => store.user.id);
   const children = useSelector((store) => store.children);
 
