@@ -10,8 +10,6 @@ function DetailsParent() {
 
   const details = useSelector((store) => store.details);
 
-  const questPage = () => { history.push('/quest') };
-
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
   const score = (details.score ? details.score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
@@ -28,6 +26,9 @@ function DetailsParent() {
     }
 	}, [questId]);
   
+  const questPage = () => { history.push('/quest') };
+  const editPage = () => { history.push(`/edit/${questId}`) };
+
   return (
     <div>
       <h2>Details Parent</h2>
@@ -39,7 +40,7 @@ function DetailsParent() {
         <button className="mobile-nav-btn" onClick={questPage}>
 					Quests
 				</button>
-				<button className="mobile-nav-btn">
+				<button className="mobile-nav-btn" onClick={editPage}>
           Edit
 				</button>
         <button className="mobile-nav-btn">

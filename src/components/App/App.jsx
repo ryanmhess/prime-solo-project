@@ -14,6 +14,7 @@ import QuestParent from '../QuestParent/QuestParent'; //  List of all children a
 import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to Home and History
 import DetailsParent from '../DetailsParent/DetailsParent';
 import DetailsChild from '../DetailsChild/DetailsChild';
+import EditPage from '../EditPage/EditPage';
 import './App.css';
 
 function App() {
@@ -70,6 +71,10 @@ function App() {
 						{user.is_parent ? <DetailsParent /> : <DetailsChild /> }
 					</ProtectedRoute>
 
+          <ProtectedRoute exact path="/edit/:id" >	
+            {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
+						{user.is_parent ? <EditPage /> : <Redirect to="/quest" /> }
+					</ProtectedRoute>
 
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
 						{/* Visiting localhost:3000/about will show the about page. */}
