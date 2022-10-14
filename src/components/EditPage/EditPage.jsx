@@ -26,24 +26,31 @@ function EditPage() {
 
   console.log('details:', details);
 
-  const questPage = () => { history.push(`/quest`) };
+  const handleCancel = () => { history.push(`/details/${questId}`) };
+
+  const handleConfirm = () => {
+    dispatch({
+      type: 'UPDATE_QUEST_DETAILS',
+      payload: details
+    })
+  }
 
   return (
     <div>
       <h2>Edit Details</h2>
-      <p>
+      {/* <p>
         <label>Title</label>
         <input 
           type="text" 
           value={details.parent_text} 
           onChange={(e) => dispatch({type: 'EDIT_TITLE', payload: e.target.value})}
         />
-      </p>
+      </p> */}
       <p>
         <label>Description</label>
         <input 
           type="text" 
-          value={details.description}
+          value={details.description || ''}
           onChange={(e) => dispatch({type: 'EDIT_DESCRIPTION', payload: e.target.value})}
         />
       </p>
@@ -51,16 +58,16 @@ function EditPage() {
         <label>Score</label>
         <input 
           type="number" 
-          value={details.score}
-          onChange={(e) => dispatch({type: 'EDIT_SCORE', payload: e.target.value})}
+          value={details.score || ''}
+          onChange={(e) => dispatch({type: 'EDIT_SCORE', payload: Number(e.target.value)})}
 
         />
       </p>
       <nav className="mobile-nav">
-        <button className="mobile-nav-btn" onClick={questPage}>
+        <button className=  "mobile-nav-btn" onClick={handleCancel}>
 					Cancel
 				</button>
-				<button className="mobile-nav-btn">
+				<button className="mobile-nav-btn" onClick={handleConfirm}>
           Confirm Changes
 				</button>
       </nav>  
