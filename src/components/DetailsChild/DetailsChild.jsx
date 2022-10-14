@@ -10,8 +10,6 @@ function DetailsChild() {
 
   const details = useSelector((store) => store.details);
 
-  const questPage = () => { history.push('/quest') };
-
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
   const score = (details.score ? details.score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
@@ -27,6 +25,8 @@ function DetailsChild() {
       })
     }
 	}, [questId]);
+
+  const questPage = () => { history.push('/quest') };
 
   return (
     <div>

@@ -19,8 +19,19 @@ function* fetchQuestDetails(action) {
     }
 }
 
+function* updateQuestDetails(action) {
+    console.log('In update quest details SAGA', action.payload);
+    const id = action.payload.id;
+    try {
+        yield axios.put(`/api/details/${id}`, action.payload);
+    } catch (error) {
+        console.log('User update request failed', error);
+    }
+}
+
 function* detailsSaga() {
-    yield takeLatest('FETCH_QUEST_DETAILS', fetchQuestDetails)
+    yield takeLatest('FETCH_QUEST_DETAILS', fetchQuestDetails),
+    yield takeLatest('UPDATE_QUEST_DETAILS', updateQuestDetails)
 }
 
 export default detailsSaga;
