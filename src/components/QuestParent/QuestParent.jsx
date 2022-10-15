@@ -12,6 +12,7 @@ function QuestParent() {
   const children = useSelector((store) => store.children);
 
 	const userPage = () => { history.push('/user') };
+  const createPage = () => { history.push(`/create/${userId}`) };
 
   useEffect(() => {
 		dispatch({
@@ -42,7 +43,7 @@ function QuestParent() {
 				<button className="mobile-nav-btn">
 				History
 				</button>
-        <button className="mobile-nav-btn">
+        <button className="mobile-nav-btn" onClick={createPage}>
 				Create
 				</button>
       </nav>  

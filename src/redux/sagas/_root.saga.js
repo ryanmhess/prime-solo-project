@@ -5,6 +5,8 @@ import userSaga from './user.saga';
 import childrenSaga from './children.saga';
 import childSaga from './child.saga';
 import detailsSaga from './details.saga';
+import categoriesSaga from './categories.saga';
+import questSaga from './quest.saga';
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
 // This is imported in index.js as rootSaga
@@ -20,5 +22,7 @@ export default function* rootSaga() {
     childrenSaga(),
     childSaga(),
     detailsSaga(),
+    categoriesSaga(),
+    questSaga(),
   ]);
 }

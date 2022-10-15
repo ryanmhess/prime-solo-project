@@ -8,11 +8,7 @@ function* fetchChildren(action) {
     console.log('In fetch children SAGA', action.payload);
     const id = action.payload;
     try {
-        const config = {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-        };
-        const response = yield axios.get(`/api/user/${id}`, config);
+        const response = yield axios.get(`/api/user/${id}`);
         yield put({ type: 'SET_CHILDREN', payload: response.data }), console.log('response data:', response.data);
     } catch (error) {
         console.log('User get request failed', error);
@@ -25,11 +21,7 @@ function* fetchChildrenDetails(action) {
     console.log('In fetch children details SAGA', action.payload);
     const id = action.payload;
     try {
-        const config = {
-        headers: { 'Content-Type': 'application/json' },
-        withCredentials: true,
-        };
-        const response = yield axios.get(`/api/list/parent/${id}`, config);
+        const response = yield axios.get(`/api/list/parent/${id}`);
         yield put({ type: 'SET_CHILDREN_DETAILS', payload: response.data }), console.log('response data:', response.data);
     } catch (error) {
         console.log('User get request failed', error);
@@ -44,11 +36,7 @@ function* removeChild(action) {
     const id = action.payload.childIdToRemove;
     const userId = action.payload.userId;
     try {
-        const config = {
-            headers: { 'Content-Type': 'application/json' },
-            withCredentials: true,
-            };
-        const response = yield axios.delete(`/api/user/${id}`, config);
+        const response = yield axios.delete(`/api/user/${id}`);
         yield put({ type: 'FETCH_CHILDREN', payload: userId });
     } catch (error) {
         console.log('User delete request failed', error);
