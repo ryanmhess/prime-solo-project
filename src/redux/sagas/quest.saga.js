@@ -10,8 +10,19 @@ function* createQuest(action) {
     }
 }
 
+function* deleteQuest(action) {
+    console.log('In delete quest SAGA', action.payload);
+    const id = action.payload
+    try {
+        yield axios.delete(`/api/quest/${id}`);
+    } catch (error) {
+        console.log('Quest delete request failed', error);
+    }
+}
+
 function* questSaga() {
-    yield takeLatest('CREATE_QUEST', createQuest)
+    yield takeLatest('CREATE_QUEST', createQuest),
+    yield takeLatest('DELETE_QUEST', deleteQuest)
 }
 
 export default questSaga;

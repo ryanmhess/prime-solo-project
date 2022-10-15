@@ -26,4 +26,21 @@ router.post('/', (req, res) => {
 		});
 });
 
+router.delete('/:id', (req, res) => {
+	console.log('In the DELETE quest router', req.params.id);
+	const sqlText = `
+		DELETE FROM "quest" 
+			WHERE id = $1;
+	`;
+    const sqlValues = [req.params.id];
+	pool.query(sqlText, sqlValues)
+		.then((postRes) => {
+			res.sendStatus(201)
+		})
+		.catch((postErr) => {
+			console.log('Failed to post quest', postErr);
+			res.sendStatus(500);
+		});
+});
+
 module.exports = router;
