@@ -1,8 +1,7 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
 
-//  Generator function initially called from the user page
-//  to get a list of all associated child accounts
+
 function* fetchCategories() {
     try {
         const response = yield axios.get(`/api/categories`);

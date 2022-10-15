@@ -1,10 +1,10 @@
 const childrenReducer = (state = [], action) => {
   switch (action.type) {
     case 'SET_CHILDREN':
-      console.log('In children reducer with:', action.payload);
+      // console.log('In children reducer with:', action.payload);
       return action.payload;
     case 'SET_CHILDREN_DETAILS':
-      console.log('In children reducer with:', action.payload);
+      // console.log('In children reducer with:', action.payload);
       return action.payload;
     case 'CLEAR_CHILDREN':
       return [];

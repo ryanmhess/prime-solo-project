@@ -5,16 +5,9 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
-//	Base GET Route		🟢🟢 Not being used atm 🟢🟢
-router.get('/', rejectUnauthenticated, (req, res) => {
-	console.log('In the GET user router:', req.body);
-	// Send back user object from the session (previously queried from the database)
-	res.send(req.user);
-});
-
 //	GET Route for Child Accounts by Parent Id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
-	console.log('In the GET user/children router', req.params.id);
+	// console.log('In the GET user/children router', req.params.id);
 	const id = req.params.id;
 	const queryText = `
 		SELECT * FROM "user"
@@ -22,7 +15,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 	`;
 	pool.query(queryText, [id])
 		.then((childrenRes) => {
-			console.log('Res rows:', childrenRes.rows);
+			// console.log('Res rows:', childrenRes.rows);
 			res.send(childrenRes.rows);
 		})
 		.catch((err) => {
@@ -31,11 +24,10 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 		});
 });
 
-
 //	POST route to register(add) adult account to db
-//	Accessed on landing page and via register links		🟢🟢 Eventually link to login/register only on landing page 🟢🟢
+//	Accessed on landing page and via register links
 router.post('/register', (req, res, next) => {
-	console.log('registration:', req.body);
+	// console.log('registration:', req.body);
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
 	const code = Number(req.body.code);
@@ -51,9 +43,9 @@ router.post('/register', (req, res, next) => {
 });
 
 //	POST route to register(add) child account to db
-//	Accessed on the parent account user page		🟢🟢 This should only live on the "family management page 🟢🟢
+//	Accessed on the parent account user page
 router.post('/register/:id', (req, res, next) => {
-	console.log('registration:', req.body);
+	// console.log('registration:', req.body);
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
 	const parent_id = req.body.parent_id;
@@ -83,9 +75,9 @@ router.post('/logout', (req, res) => {
 	res.sendStatus(200);
 });
 
-//	DELETE route to remove child accounts from db		🟢🟢 This should only live on the "family management page 🟢🟢
+//	DELETE route to remove child accounts from db
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
-	console.log('In the DELETE user/child router', req.params.id);
+	// console.log('In the DELETE user/child router', req.params.id);
 	const id = req.params.id;
 	const queryText = `
 		DELETE FROM "user"
@@ -93,7 +85,7 @@ router.delete('/:id', rejectUnauthenticated, (req, res) => {
 	`;
 	pool.query(queryText, [id])
 		.then((removeRes) => {
-			console.log('Res rows:', removeRes.rows);
+			// console.log('Res rows:', removeRes.rows);
 			res.send(removeRes.rows);
 		})
 		.catch((err) => {

@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-// import { useSelector } from 'react-redux';
 
 //  Generator function initially called from the user page
 //  to get a list of all associated child accounts
 function* fetchChildren(action) {
-    console.log('In fetch children SAGA', action.payload);
+    // console.log('In fetch children SAGA', action.payload);
     const id = action.payload;
     try {
         const response = yield axios.get(`/api/user/${id}`);
@@ -18,7 +17,7 @@ function* fetchChildren(action) {
 //  Generator function initially called from the user page
 //  to get a list of all associated child accounts
 function* fetchChildrenDetails(action) {
-    console.log('In fetch children details SAGA', action.payload);
+    // console.log('In fetch children details SAGA', action.payload);
     const id = action.payload;
     try {
         const response = yield axios.get(`/api/list/parent/${id}`);
@@ -32,7 +31,7 @@ function* fetchChildrenDetails(action) {
 //  when the [Remove] button is clicked in order
 //  to remove a child account
 function* removeChild(action) {
-    console.log('In remove child SAGA', action.payload);
+    // console.log('In remove child SAGA', action.payload);
     const id = action.payload.childIdToRemove;
     const userId = action.payload.userId;
     try {

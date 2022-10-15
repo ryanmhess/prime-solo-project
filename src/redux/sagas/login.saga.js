@@ -7,17 +7,15 @@ function* loginUser(action) {
   try {
     // clear any existing error on the login page
     yield put({ type: 'CLEAR_LOGIN_ERROR' });
-
     const config = {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-    console.log('login payload AFTER clear login error:', action.payload);
+    // console.log('login payload AFTER clear login error:', action.payload);
     // send the action.payload as the body
     // the config includes credentials which
     // allow the server session to recognize the user
     yield axios.post('/api/user/login', action.payload, config);
-
     // after the user has logged in
     // get the user information from the server
     yield put({ type: 'FETCH_USER' });
@@ -43,13 +41,11 @@ function* logoutUser(action) {
       headers: { 'Content-Type': 'application/json' },
       withCredentials: true,
     };
-
     // the config includes credentials which
     // allow the server session to recognize the user
     // when the server recognizes the user session
     // it will end the session
     yield axios.post('/api/user/logout', config);
-
     // now that the session has ended on the server
     // remove the client-side user object to let
     // the client-side code know the user is logged out

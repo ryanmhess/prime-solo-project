@@ -53,8 +53,6 @@ function CreatePage() {
 
   const handleCreate = (event) => {
     event.preventDefault();
-    console.log('Hi!');
-    console.log(description);
     dispatch({
       type: 'CREATE_QUEST',
       payload: {

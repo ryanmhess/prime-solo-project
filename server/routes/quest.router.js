@@ -2,10 +2,9 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
-//	GET Route for Child Accounts by Parent Id
-// router.get('/parent/details/:id', rejectUnauthenticated, (req, res) => {
+//	Route used to add a new quest
 router.post('/', (req, res) => {
-	console.log('In the POST quest router', req.body);
+	// console.log('In the POST quest router', req.body);
     const child_id = Number(req.body.child_id);
     const category_id = Number(req.body.category_id);
     const description = req.body.description;
@@ -26,8 +25,9 @@ router.post('/', (req, res) => {
 		});
 });
 
+//	Route used to delete a quest
 router.delete('/:id', (req, res) => {
-	console.log('In the DELETE quest router', req.params.id);
+	// console.log('In the DELETE quest router', req.params.id);
 	const sqlText = `
 		DELETE FROM "quest" 
 			WHERE id = $1;

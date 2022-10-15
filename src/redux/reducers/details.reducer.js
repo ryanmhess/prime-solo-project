@@ -1,7 +1,7 @@
 const detailsReducer = (state = {}, action) => {
     switch (action.type) {
         case 'SET_QUEST_DETAILS':
-            console.log('In details reducer with:', action.payload);
+            // console.log('In details reducer with:', action.payload);
             return action.payload;
         // case 'EDIT_TITLE':
         //     return {...state, parent_text: action.payload };

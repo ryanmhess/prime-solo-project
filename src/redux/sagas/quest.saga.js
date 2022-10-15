@@ -2,7 +2,7 @@ import axios from 'axios';
 import { takeLatest } from 'redux-saga/effects';
 
 function* createQuest(action) {
-    console.log('In create quest SAGA', action.payload);
+    // console.log('In create quest SAGA', action.payload);
     try {
         yield axios.post(`/api/quest`, action.payload);
     } catch (error) {
@@ -11,7 +11,7 @@ function* createQuest(action) {
 }
 
 function* deleteQuest(action) {
-    console.log('In delete quest SAGA', action.payload);
+    // console.log('In delete quest SAGA', action.payload);
     const id = action.payload
     try {
         yield axios.delete(`/api/quest/${id}`);
