@@ -35,6 +35,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 //	POST route to register(add) adult account to db
 //	Accessed on landing page and via register links		🟢🟢 Eventually link to login/register only on landing page 🟢🟢
 router.post('/register', (req, res, next) => {
+	console.log('registration:', req.body);
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
 	const code = Number(req.body.code);
@@ -52,6 +53,7 @@ router.post('/register', (req, res, next) => {
 //	POST route to register(add) child account to db
 //	Accessed on the parent account user page		🟢🟢 This should only live on the "family management page 🟢🟢
 router.post('/register/:id', (req, res, next) => {
+	console.log('registration:', req.body);
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
 	const parent_id = req.body.parent_id;

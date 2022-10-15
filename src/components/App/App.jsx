@@ -15,6 +15,7 @@ import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to 
 import DetailsParent from '../DetailsParent/DetailsParent';
 import DetailsChild from '../DetailsChild/DetailsChild';
 import EditPage from '../EditPage/EditPage';
+import CreatePage from '../CreatePage/CreatePage';
 import './App.css';
 
 function App() {
@@ -64,6 +65,11 @@ function App() {
           <ProtectedRoute exact path="/quest" >	
             {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
 						{user.is_parent ? <QuestParent /> : <QuestChild /> }
+					</ProtectedRoute>
+
+          <ProtectedRoute exact path="/create/:id" >	
+            {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
+						{user.is_parent ? <CreatePage /> : <Redirect to="/quest" /> }
 					</ProtectedRoute>
 
           <ProtectedRoute exact path="/details/:id" >	
