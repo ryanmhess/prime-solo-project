@@ -28,6 +28,14 @@ function DetailsParent() {
   
   const questPage = () => { history.push('/quest') };
   const editPage = () => { history.push(`/edit/${questId}`) };
+  const handleDelete = () => {
+    console.log('Hi', questId);
+    dispatch({
+			type: 'DELETE_QUEST',
+			payload: questId
+		})
+    questPage();
+  }
 
   return (
     <div>
@@ -38,12 +46,12 @@ function DetailsParent() {
       <p>Score: {score}</p>
       <nav className="mobile-nav">
         <button className="mobile-nav-btn" onClick={questPage}>
-					Quests
+					Back
 				</button>
 				<button className="mobile-nav-btn" onClick={editPage}>
           Edit
 				</button>
-        <button className="mobile-nav-btn">
+        <button className="mobile-nav-btn" onClick={handleDelete}>
           Delete
 				</button>
       </nav>  

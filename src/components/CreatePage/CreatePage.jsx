@@ -41,9 +41,6 @@ function CreatePage() {
     history.push('/quest') 
   };
 
-  const testOnePage = () => { console.log('Category Selected:', category); };
-  const testTwoPage = () => { console.log('Child Selected:', child); };
-
   useEffect(() => {
 		dispatch({
 			type: 'FETCH_CATEGORIES', 
@@ -91,7 +88,7 @@ function CreatePage() {
                   includeInputInList
                   value={child}
                   onChange={(event, newChild) => { setChild(newChild); }}
-                  renderInput={(params) => ( <TextField {...params} label="Child" /> )}
+                  renderInput={(params) => ( <TextField {...params} label="Child" required/> )}
                 />
               </Grid>
 
@@ -103,7 +100,7 @@ function CreatePage() {
                   includeInputInList
                   value={category}
                   onChange={(event, newCategory) => { setCategory(newCategory); }}
-                  renderInput={(params) => ( <TextField {...params} label="Category" /> )}
+                  renderInput={(params) => ( <TextField {...params} label="Category" required/> )}
                 />
               </Grid>
 
@@ -131,8 +128,6 @@ function CreatePage() {
       </Card>
       <Stack className="mobile-nav" spacing={0} direction="row">
         <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Cancel</Button>
-        <Button variant="outlined" className="mobile-nav-btn" onClick={testTwoPage}>Child</Button>
-        <Button variant="outlined" className="mobile-nav-btn" onClick={testOnePage}>Category</Button>
       </Stack> 
     </div>
   );
