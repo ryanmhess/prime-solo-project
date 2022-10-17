@@ -1,6 +1,12 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
 
 function DetailsParent() {
 
@@ -38,25 +44,43 @@ function DetailsParent() {
   }
 
   return (
-    <div>
-      <h2>Details Parent</h2>
-      <p>Asignee: {details.username}</p>
-      <p>Title: {details.parent_text}</p>
-      <p>Description: {details.description}</p>
-      <p>Status: {status}</p>
-      <p>Score: {score}</p>
-      <nav className="mobile-nav">
-        <button className="mobile-nav-btn" onClick={questPage}>
-					Back
-				</button>
-				<button className="mobile-nav-btn" onClick={editPage}>
-          Edit
-				</button>
-        <button className="mobile-nav-btn" onClick={handleDelete}>
-          Delete
-				</button>
-      </nav>  
-    </div>
+    <>
+    <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
+        <CardContent>
+          <Typography gutterBottom variant="h5">Quest Details</Typography>
+            <Grid container spacing={2}>
+              <Grid xs={12} item>
+                Asignee: {details.username}
+              </Grid>
+              <Grid xs={12} item>
+                Title: {details.parent_text}
+              </Grid>
+              <Grid xs={12} item>
+                Description: {details.description}
+              </Grid>
+              <Grid xs={12} item>
+                Status: {status}
+              </Grid>
+              <Grid xs={12} item>
+                Score: {score}
+              </Grid>
+              <Grid xs={12} item>
+                <Stack spacing={0} direction="row">
+                  <Grid xs={6} item>
+                      <Button variant="outlined" onClick={editPage}>Edit</Button>
+                  </Grid>
+                  <Grid xs={6} item>
+                      <Button variant="outlined" onClick={handleDelete}>Delete</Button>
+                  </Grid>
+                </Stack>
+              </Grid>
+            </Grid>
+        </CardContent>
+      </Card>
+      <Stack className="mobile-nav" spacing={0} direction="row">
+        <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Back</Button>
+      </Stack>
+      </>
   );
 }
 

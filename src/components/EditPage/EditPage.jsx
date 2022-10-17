@@ -55,7 +55,7 @@ function EditPage() {
   }
 
   return (
-    <div>
+    <>
       <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
         <CardContent>
           <Typography gutterBottom variant="h5">Edit Quest for {details.username}</Typography>
@@ -100,7 +100,7 @@ function EditPage() {
       <Stack className="mobile-nav" spacing={0} direction="row">
         <Button variant="outlined" className="mobile-nav-btn" onClick={handleCancel}>Cancel</Button>
       </Stack> 
-    </div>
+    </>
   );
 }
 
