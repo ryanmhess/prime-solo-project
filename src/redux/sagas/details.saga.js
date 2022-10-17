@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-// import { useSelector } from 'react-redux';
 
 //  Generator function initially called from the user page
 //  to get a list of all associated child accounts
 function* fetchQuestDetails(action) {
-    console.log('In fetch quest details SAGA', action.payload);
+    // console.log('In fetch quest details SAGA', action.payload);
     const id = action.payload;
     try {
         const response = yield axios.get(`/api/details/${id}`);
@@ -16,7 +15,7 @@ function* fetchQuestDetails(action) {
 }
 
 function* updateQuestDetails(action) {
-    console.log('In update quest details SAGA', action.payload);
+    // console.log('In update quest details SAGA', action.payload);
     const id = action.payload.id;
     try {
         yield axios.put(`/api/details/${id}`, action.payload);

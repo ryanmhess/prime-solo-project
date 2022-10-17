@@ -40,6 +40,7 @@ function DetailsParent() {
   return (
     <div>
       <h2>Details Parent</h2>
+      <p>Asignee: {details.username}</p>
       <p>Title: {details.parent_text}</p>
       <p>Description: {details.description}</p>
       <p>Status: {status}</p>

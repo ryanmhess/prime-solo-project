@@ -25,10 +25,6 @@ function QuestChild() {
     }
 	}, [userId]);
 
-  console.log('user id:', userId);
-  console.log('This is CHILD:', child);
-  console.log('This is child name:', child.username);
-
   const questText = child.text || [];
   const questFinish = child.finish;
   const questStart = child.start

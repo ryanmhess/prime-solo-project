@@ -8,7 +8,7 @@ function FamilyItem({ child }) {
     const dispatch = useDispatch();
 
     const removeChild = () => {
-        console.log(`This button will remove ${child.username} with ID: ${child.id}.`);
+        // console.log(`This button will remove ${child.username} with ID: ${child.id}.`);
         const childIdToRemove = child.id;
         dispatch({
             type: 'REMOVE_CHILD',

@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { put, takeLatest } from 'redux-saga/effects';
-// import { useSelector } from 'react-redux';
 
 //  Generator function initially called from the user page
 //  to get a list of all associated child accounts
 function* fetchChildDetails(action) {
-    console.log('In fetch child details SAGA', action.payload);
+    // console.log('In fetch child details SAGA', action.payload);
     const id = action.payload;
     try {
         const response = yield axios.get(`/api/list/child/${id}`);

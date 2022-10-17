@@ -26,8 +26,6 @@ function QuestParent() {
     }
 	}, [userId]);
 
-  console.log('This is CHILDREN:', children);
-
   return (
     <div>
       <h2>Quest Parent</h2>
