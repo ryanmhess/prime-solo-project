@@ -70,7 +70,7 @@ function EditPage() {
                   autoComplete
                   includeInputInList
                   value={details.parent_text || ''}
-                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory.parent_id || ''})}
+                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory || ''})}
                   renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required /> )}
                 />
               </Grid>

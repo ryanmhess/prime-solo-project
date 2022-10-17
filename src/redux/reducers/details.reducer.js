@@ -4,7 +4,7 @@ const detailsReducer = (state = {}, action) => {
         case 'SET_QUEST_DETAILS':
             return action.payload;
         case 'EDIT_CATEGORY':
-            return {...state, parent_text: action.payload };
+            return {...state, parent_text: action.payload.parent_text || '' };
         case 'EDIT_DESCRIPTION':
             return {...state, description: action.payload };
         case 'EDIT_SCORE':
