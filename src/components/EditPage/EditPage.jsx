@@ -40,6 +40,7 @@ function EditPage() {
     getOptionLabel: (option) => option.parent_text
   }
   console.log('categories', categories);
+
   console.log('details', details);
   console.log('category:', details.parent_text);
   console.log('category id:', details.category_id);
@@ -68,8 +69,8 @@ function EditPage() {
                   id="combo-box-demo"
                   autoComplete
                   includeInputInList
-                  value={details.parent_text}
-                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
+                  value={details.parent_text || ''}
+                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory.parent_id || ''})}
                   renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required /> )}
                 />
               </Grid>
