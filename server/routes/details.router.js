@@ -7,14 +7,16 @@ const router = express.Router();
     // console.log('In the GET details router', req.params.id);
     const id = req.params.id;
     const sqlText = `
-    SELECT "quest".id, "category".parent_text, "category".child_text, "quest".description, "quest".start, "quest".finish, "quest".score FROM "quest"
+    SELECT "quest".id, "user".username, "category".id AS category_id, "category".parent_text, "category".child_text, "quest".description, "quest".start, "quest".finish, "quest".score FROM "quest"
       LEFT JOIN "category"
         ON "quest".category_id = "category".id
+      LEFT JOIN "user"
+        ON "quest".child_id = "user".id
       WHERE "quest".id = $1;
     `;
     pool.query(sqlText, [id])
       .then((detailsRes) => {
-        console.log('Res rows:', detailsRes.rows);
+        // console.log('Res rows:', detailsRes.rows);
         res.send(detailsRes.rows);
       })
       .catch((err) => {

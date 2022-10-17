@@ -5,6 +5,13 @@ const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
 const router = express.Router();
 
+//	Base GET Route
+router.get('/', rejectUnauthenticated, (req, res) => {
+	// console.log('In the GET user router:', req.body);
+	// Send back user object from the session (previously queried from the database)
+	res.send(req.user);
+});
+
 //	GET Route for Child Accounts by Parent Id
 router.get('/:id', rejectUnauthenticated, (req, res) => {
 	// console.log('In the GET user/children router', req.params.id);
@@ -24,8 +31,9 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 		});
 });
 
+
 //	POST route to register(add) adult account to db
-//	Accessed on landing page and via register links
+//	Accessed on landing page and via register links		🟢🟢 Eventually link to login/register only on landing page 🟢🟢
 router.post('/register', (req, res, next) => {
 	// console.log('registration:', req.body);
 	const username = req.body.username;
@@ -43,7 +51,7 @@ router.post('/register', (req, res, next) => {
 });
 
 //	POST route to register(add) child account to db
-//	Accessed on the parent account user page
+//	Accessed on the parent account user page		🟢🟢 This should only live on the "family management page 🟢🟢
 router.post('/register/:id', (req, res, next) => {
 	// console.log('registration:', req.body);
 	const username = req.body.username;
@@ -75,7 +83,7 @@ router.post('/logout', (req, res) => {
 	res.sendStatus(200);
 });
 
-//	DELETE route to remove child accounts from db
+//	DELETE route to remove child accounts from db		🟢🟢 This should only live on the "family management page 🟢🟢
 router.delete('/:id', rejectUnauthenticated, (req, res) => {
 	// console.log('In the DELETE user/child router', req.params.id);
 	const id = req.params.id;

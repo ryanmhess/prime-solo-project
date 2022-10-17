@@ -34,7 +34,7 @@ function CreatePage() {
     getOptionLabel: (option) => option.parent_text
   }
 
-  const questPage = () => { 
+  const handleCancel = () => { 
     dispatch({
       type: 'CLEAR_CHILDREN'
     })
@@ -67,7 +67,7 @@ function CreatePage() {
     setChild(null);
     setCategory(null);
     setDescription('');
-    questPage();
+    handleCancel();
   }
 
   return (
@@ -125,7 +125,7 @@ function CreatePage() {
         </CardContent>
       </Card>
       <Stack className="mobile-nav" spacing={0} direction="row">
-        <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Cancel</Button>
+        <Button variant="outlined" className="mobile-nav-btn" onClick={handleCancel}>Cancel</Button>
       </Stack> 
     </div>
   );
