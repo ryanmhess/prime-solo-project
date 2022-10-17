@@ -74,7 +74,7 @@ function CreatePage() {
     <div>
       <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
         <CardContent>
-          <Typography gutterBottom variant="h5">Create Quest</Typography>
+          <Typography align="center" gutterBottom variant="h4">Create Quest</Typography>
           <form onSubmit={handleCreate} className="Customer Info">
             <Grid container spacing={2}>
 
@@ -86,7 +86,7 @@ function CreatePage() {
                   includeInputInList
                   value={child}
                   onChange={(event, newChild) => { setChild(newChild); }}
-                  renderInput={(params) => ( <TextField {...params} label="Child" required/> )}
+                  renderInput={(params) => ( <TextField {...params} label="Child" placeholder="Select Child" required/> )}
                 />
               </Grid>
 
@@ -98,7 +98,7 @@ function CreatePage() {
                   includeInputInList
                   value={category}
                   onChange={(event, newCategory) => { setCategory(newCategory); }}
-                  renderInput={(params) => ( <TextField {...params} label="Category" required/> )}
+                  renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required/> )}
                 />
               </Grid>
 
@@ -109,7 +109,9 @@ function CreatePage() {
                   type="text" 
                   label="Description" 
                   placeholder="Detailed description goes here" 
-                  multiline maxRows={5} 
+                  multiline 
+                  rows={5}
+                  maxRows={10} 
                   value={description}
                   onChange={(event) => { setDescription(event.target.value); }}
                   fullWidth
@@ -117,7 +119,9 @@ function CreatePage() {
               </Grid>
 
               <Grid xs={12} item>
-                <Button type="submit" variant="outlined" className="mobile-nav-btn" >Create</Button>
+                <Stack style={{padding: "20px 0px 0px 0px"}} spacing={7} direction="row" justifyContent="center" alignItems="center">
+                  <Button type="submit" variant="outlined" className="mobile-nav-btn" >Create</Button>    
+                </Stack>
               </Grid>
 
             </Grid>

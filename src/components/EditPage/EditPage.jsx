@@ -37,7 +37,7 @@ function EditPage() {
 
   const categoryNames = {
     options: categories,
-    getOptionLabel: (option) => option.parent_text
+    getOptionLabel: (option) => option.parent_text || ''
   }
   console.log('categories', categories);
 
@@ -54,6 +54,8 @@ function EditPage() {
     })
   }
 
+  
+
   return (
     <>
       <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
@@ -69,8 +71,8 @@ function EditPage() {
                   id="combo-box-demo"
                   autoComplete
                   includeInputInList
-                  value={details.parent_text || ''}
-                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory || ''})}
+                  value={{id: details.category_id, parent_text: details.parent_text, child_text: details.child_text }}
+                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
                   renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required /> )}
                 />
               </Grid>
@@ -82,7 +84,8 @@ function EditPage() {
                   type="text" 
                   label="Description" 
                   placeholder="Detailed description goes here" 
-                  multiline maxRows={5} 
+                  multiline 
+                  rows={5} 
                   value={details.description || ''}
                   onChange={(event) => dispatch({type: 'EDIT_DESCRIPTION', payload: event.target.value})}
                   fullWidth
@@ -90,7 +93,7 @@ function EditPage() {
               </Grid>
 
               <Grid xs={12} item>
-                <Button type="submit" variant="outlined" className="mobile-nav-btn" >Confirm Changes</Button>
+                <Button fullWidth type="submit" variant="outlined" className="mobile-nav-btn" >Confirm Changes</Button>
               </Grid>
 
             </Grid>
