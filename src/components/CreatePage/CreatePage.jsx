@@ -71,10 +71,10 @@ function CreatePage() {
   }
 
   return (
-    <div>
+    <>
+      <Typography className="mobile-title" align="center" variant="h4">Create Quest</Typography>
       <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
         <CardContent>
-          <Typography align="center" gutterBottom variant="h4">Create Quest</Typography>
           <form onSubmit={handleCreate} className="Customer Info">
             <Grid container spacing={2}>
 
@@ -131,7 +131,7 @@ function CreatePage() {
       <Stack className="mobile-nav" spacing={0} direction="row">
         <Button variant="outlined" className="mobile-nav-btn" onClick={handleCancel}>Cancel</Button>
       </Stack> 
-    </div>
+    </>
   );
 }
 

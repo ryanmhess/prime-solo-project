@@ -22,10 +22,11 @@ function* deleteQuest(action) {
 
 function* updateQuest(action) {
     console.log('In update quest SAGA', action.payload);
+    const id = action.payload.id
     try {
-        yield axios.put(`/api/quest`, action.payload);
+        yield axios.put(`/api/quest/${id}`, action.payload);
     } catch (error) {
-        console.log('Quest delete request failed', error);
+        console.log('Quest update request failed', error);
     }
 }
 

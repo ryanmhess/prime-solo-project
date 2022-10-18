@@ -1,6 +1,13 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
 
 function DetailsChild() {
 
@@ -29,21 +36,80 @@ function DetailsChild() {
   const questPage = () => { history.push('/quest') };
 
   return (
-    <div>
-      <h2>Details Child</h2>
-      <p>Title: {details.child_text}</p>
-      <p>Description: {details.description}</p>
-      <p>Status: {status}</p>
-      <p>Score: {score}</p>
-      <nav className="mobile-nav">
-        <button className="mobile-nav-btn" onClick={questPage}>
-					Quests
-				</button>
-				<button className="mobile-nav-btn">
-          Start
-				</button>
-      </nav>  
-    </div>
+    <>
+      <Typography className="mobile-title" align="center" variant="h4">Current Quest</Typography>
+      <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px" }}>
+        <CardContent>
+          <Grid container spacing={2}>
+            <Grid xs={12} item>
+              <TextField
+                fullWidth
+                id="outlined-read-only-input"
+                label="Child:"
+                value={details.username || ''}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </Grid>
+            <Grid xs={12} item>
+              <TextField
+                fullWidth
+                id="outlined-read-only-input"
+                label="Category:"
+                value={details.parent_text || ''}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </Grid>
+            <Grid xs={12} style={{margin: 'auto'}} item>
+              <TextField
+                fullWidth
+                id="outlined-read-only-input"
+                label="Description:"
+                value={details.description || ''}
+                multiline
+                rows={5}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </Grid>
+            <Grid xs={12} item>
+              <TextField
+                fullWidth
+                id="outlined-read-only-input"
+                label="Status:"
+                value={status || ''}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </Grid>
+            <Grid xs={12} item>
+              <TextField
+                fullWidth
+                id="outlined-read-only-input"
+                label="Score:"
+                value={score || ''}
+                InputProps={{
+                  readOnly: true,
+                }}
+              />
+            </Grid>
+            <Grid xs={12} item>
+              <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
+                    <Button variant="outlined"  className="mobile-nav-btn" >Start</Button>
+              </Stack>
+            </Grid>
+          </Grid>
+        </CardContent>
+      </Card>
+      <Stack className="mobile-nav" direction="row">
+        <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Back</Button>
+      </Stack>
+    </>
   );
 }
 

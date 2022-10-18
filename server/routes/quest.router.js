@@ -43,26 +43,24 @@ router.delete('/:id', (req, res) => {
 		});
 });
 
-router.put('/', (req, res) => {
+router.put('/:id', (req, res) => {
 	console.log('In the POST quest router', req.body);
-    // const id = Number(req.body.id);
-    // const category_id = Number(req.body.category_id);
-    // const description = req.body.description;
-	// const sqlText = `
-    //     INSERT INTO "quest"
-    //         (child_id, category_id, description)
-    //     VALUES
-    //         ($1, $2, $3);
-	// `;
-    // const sqlValues = [child_id, category_id, description];
-	// pool.query(sqlText, sqlValues)
-	// 	.then((postRes) => {
-	// 		res.sendStatus(201)
-	// 	})
-	// 	.catch((postErr) => {
-	// 		console.log('Failed to post quest', postErr);
-	// 		res.sendStatus(500);
-	// 	});
+    const category_id = Number(req.body.category_id);
+    const description = req.body.description;
+	const sqlText = `
+		UPDATE "quest"
+			SET "category_id" = $2, "description" = $3
+			WHERE "id" = $1;
+	`;
+    const sqlValues = [req.params.id, category_id, description];
+	pool.query(sqlText, sqlValues)
+		.then((postRes) => {
+			res.sendStatus(201)
+		})
+		.catch((postErr) => {
+			console.log('Failed to post quest', postErr);
+			res.sendStatus(500);
+		});
 });
 
 module.exports = router;
