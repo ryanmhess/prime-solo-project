@@ -10,8 +10,13 @@ function QuestChildItem({ quest }) {
 
   const history = useHistory();
 
-  const status = (quest.start === null ? <AccessTimeTwoToneIcon style={{ color: 'red' }} /> : (quest.finish ? <AccessTimeTwoToneIcon style={{ color: 'green' }} /> : <AccessTimeTwoToneIcon style={{ color: 'orange' }} />));
-  const scored = (quest.score ? <CheckBoxTwoToneIcon style={{ color: 'green' }} /> : (quest.finish ? <DisabledByDefaultTwoToneIcon style={{ color: 'orange' }} /> : <DisabledByDefaultTwoToneIcon style={{ color: 'red' }} />));
+  const status = (quest.start === null ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'red' }} /> : 
+    (quest.finish ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
+      <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'orange' }} />));
+  
+      const scored = (quest.score ? <CheckBoxTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
+    (quest.finish ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'orange' }} /> : 
+      <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'red' }} />));
 
   const detailsPage = () => { history.push(`/details/${quest.id}`) }
   

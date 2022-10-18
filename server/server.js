@@ -13,6 +13,7 @@ const listRouter = require('./routes/list.router');
 const detailsRouter = require('./routes/details.router');
 const categoriesRouter = require('./routes/categories.router');
 const questRouter = require('./routes/quest.router');
+const statusRouter = require('./routes/status.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -31,7 +32,7 @@ app.use('/api/list', listRouter);
 app.use('/api/details', detailsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/quest', questRouter);
-
+app.use('/api/status', statusRouter);
 
 // Serve static files
 app.use(express.static('build'));

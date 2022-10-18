@@ -34,23 +34,41 @@ function DetailsChild() {
 	}, [questId]);
 
   const handleBack = () => { history.push('/quest') };
+
   const handleStart = () => {
     dispatch({
       type: 'SET_START',
       payload: questId,
     })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
   }
+
   const handleReset = () => {
     dispatch({
       type: 'SET_RESET',
       payload: questId,
     })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
   }
+
   const handleFinish = () => {
     dispatch({
       type: 'SET_FINISH',
       payload: questId,
     })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
   }
 
 
@@ -76,7 +94,7 @@ function DetailsChild() {
                 fullWidth
                 id="outlined-read-only-input"
                 label="Category:"
-                value={details.parent_text || ''}
+                value={details.child_text || ''}
                 InputProps={{
                   readOnly: true,
                 }}
