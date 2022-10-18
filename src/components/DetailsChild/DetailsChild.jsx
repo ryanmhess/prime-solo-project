@@ -33,7 +33,44 @@ function DetailsChild() {
     }
 	}, [questId]);
 
-  const questPage = () => { history.push('/quest') };
+  const handleBack = () => { history.push('/quest') };
+
+  const handleStart = () => {
+    dispatch({
+      type: 'SET_START',
+      payload: questId,
+    })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
+  }
+
+  const handleReset = () => {
+    dispatch({
+      type: 'SET_RESET',
+      payload: questId,
+    })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
+  }
+
+  const handleFinish = () => {
+    dispatch({
+      type: 'SET_FINISH',
+      payload: questId,
+    })
+    return () => {
+      dispatch({
+        type: 'CLEAR_DETAILS'
+      })
+    }
+  }
+
 
   return (
     <>
@@ -57,7 +94,7 @@ function DetailsChild() {
                 fullWidth
                 id="outlined-read-only-input"
                 label="Category:"
-                value={details.parent_text || ''}
+                value={details.child_text || ''}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -100,14 +137,19 @@ function DetailsChild() {
             </Grid>
             <Grid xs={12} item>
               <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
-                    <Button variant="outlined"  className="mobile-nav-btn" >Start</Button>
+                {status === 'Not Started' ? <Button variant="outlined"  className="mobile-nav-btn" onClick={handleStart}>Start</Button> : 
+                (status === 'Finished' ? '' :
+                  <>
+                    <Button variant="outlined"  className="mobile-nav-btn" onClick={handleReset}>Reset</Button>
+                    <Button variant="outlined"  className="mobile-nav-btn" onClick={handleFinish}>Finish</Button>
+                  </>)}
               </Stack>
             </Grid>
           </Grid>
         </CardContent>
       </Card>
       <Stack className="mobile-nav" direction="row">
-        <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Back</Button>
+        <Button variant="outlined" className="mobile-nav-btn" onClick={handleBack}>Back</Button>
       </Stack>
     </>
   );
