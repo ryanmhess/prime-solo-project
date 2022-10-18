@@ -46,9 +46,9 @@ function DetailsParent() {
 
   return (
     <>
-      <Card position='fixed' style={{maxWidth:700, margin:"15% 2.5%", padding: "20px 5px" }}>
+      <Typography className="mobile-title" align="center" variant="h4">Quest Details</Typography>
+      <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px" }}>
         <CardContent>
-          <Typography align="center" gutterBottom variant="h4">Quest Details</Typography>
           <Grid container spacing={2}>
             <Grid xs={12} item>
               <TextField
@@ -56,7 +56,7 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Child:"
                 value={details.username || ''}
-                defaultValue={details.username}
+                // defaultValue={details.username}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -68,7 +68,7 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Category:"
                 value={details.parent_text || ''}
-                defaultValue={details.parent_text}
+                // defaultValue={details.parent_text}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -80,7 +80,7 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Description:"
                 value={details.description || ''}
-                defaultValue={details.description}
+                // defaultValue={details.description}
                 multiline
                 rows={5}
                 InputProps={{
@@ -94,7 +94,7 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Status:"
                 value={status || ''}
-                defaultValue={status}
+                // defaultValue={status}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -106,18 +106,12 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Score:"
                 value={score || ''}
-                defaultValue={score}
+                // defaultValue={score}
                 InputProps={{
                   readOnly: true,
                 }}
               />
             </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
-      <Card style={{maxWidth:700, margin:"auto", padding: "5px 5px" }}>
-        <CardContent>
-          <Grid container spacing={0}>
             <Grid xs={12} item>
               <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
                     <Button variant="outlined"  className="mobile-nav-btn" onClick={editPage}>Edit</Button>

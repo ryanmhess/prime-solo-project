@@ -52,6 +52,7 @@ function EditPage() {
       type: 'UPDATE_QUEST',
       payload: details
     })
+    handleCancel();
   }
 
   
@@ -61,9 +62,7 @@ function EditPage() {
       <Card style={{maxWidth:700, margin:"25% 2.5%", padding:"20px 5px"}}>
         <CardContent>
           <Typography gutterBottom variant="h5">Edit Quest for {details.username}</Typography>
-          <form  onSubmit={handleUpdate} className="Customer Info">
             <Grid container spacing={2}>
-
               <Grid xs={12} item>
                 <Autocomplete
                   {...categoryNames}
@@ -76,7 +75,6 @@ function EditPage() {
                   renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required /> )}
                 />
               </Grid>
-
               <Grid xs={12} item>
                 <TextField 
                   required 
@@ -91,13 +89,10 @@ function EditPage() {
                   fullWidth
                 />
               </Grid>
-
               <Grid xs={12} item>
-                <Button fullWidth type="submit" variant="outlined" className="mobile-nav-btn" >Confirm Changes</Button>
+                <Button fullWidth type="submit" variant="outlined" className="mobile-nav-btn" onClick={handleUpdate}>Confirm Changes</Button>
               </Grid>
-
             </Grid>
-          </form>
         </CardContent>
       </Card>
       <Stack className="mobile-nav" spacing={0} direction="row">
