@@ -73,14 +73,10 @@ function QuestParentChild({ child }) {
   };
 
   return (
-    
     <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
-    <AccordionSummary
-      // expandIcon={<ExpandMoreIcon />}
-      aria-controls="panel1d-content" id="panel1d-header"
-    >
-      <Typography>{child.username}</Typography>
-    </AccordionSummary>
+      <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" >
+        <Typography>{child.username}</Typography>
+      </AccordionSummary>
       <AccordionDetails>
         <Stack spacing={16} direction="row" justifyContent="center" alignItems="center">
           <Typography>Category</Typography>
@@ -90,23 +86,13 @@ function QuestParentChild({ child }) {
           </Stack>
         </Stack>
       </AccordionDetails>
-    {quests.map((quest, i) => (
+      {quests.map((quest, i) => (
         <AccordionDetails key={quest.id} direction="column">
           <QuestParentChildItem quest={quest} />
         </AccordionDetails>
       ))}
-  </Accordion>
-  
+    </Accordion>
   );
 }
 
 export default QuestParentChild;
-
-{/* <Stack style={{ margin:"5% 10%" }} direction="column">
-<Typography variant="h5">{child.username}</Typography>
-{quests.map((quest, i) => (
-  <Stack key={quest.id} direction="column">
-    <QuestParentChildItem quest={quest} />
-  </Stack>
-))}
-</Stack> */}

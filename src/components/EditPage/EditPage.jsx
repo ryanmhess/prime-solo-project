@@ -25,11 +25,6 @@ function EditPage() {
     dispatch({
 			type: 'FETCH_CATEGORIES', 
 		})
-    // return () => {
-    //   dispatch({
-    //     type: 'CLEAR_DETAILS'
-    //   })
-    // }
 	}, [questId]);
 
   const details = useSelector((store) => store.details);
@@ -54,8 +49,6 @@ function EditPage() {
     })
     handleCancel();
   }
-
-  
 
   return (
     <>
