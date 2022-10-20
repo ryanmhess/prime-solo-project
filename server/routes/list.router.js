@@ -32,14 +32,14 @@ router.get('/child/:id', (req, res) => {
 	// console.log('In the GET user/children router', req.params.id);
 	const id = req.params.id;
 	const queryText = `
-		SELECT "user".id, "user".username, ARRAY_AGG("category".child_text) AS text, ARRAY_AGG("quest".id) AS qid, ARRAY_AGG("quest".score) AS score, ARRAY_AGG("quest".start) AS start, ARRAY_AGG("quest".finish) AS finish FROM "user"
-			LEFT JOIN "quest"
-				ON "user".id = "quest".child_id
+		SELECT "user".id, "quest".id AS quest_id, "category".child_text, "quest".start, "quest".finish FROM "quest"
 			LEFT JOIN "category"
 				ON "quest".category_id = "category".id
+			LEFT JOIN "user"
+				ON "quest".child_id = "user".id
 			WHERE "user".id = $1
-			GROUP BY "user".id;
-	`;
+      ORDER BY "quest".finish ASC NULLS LAST, "quest".start ASC NULLS LAST;
+  `;
 	pool.query(queryText, [id])
 		.then((childRes) => {
 			// console.log('Res rows:', childRes.rows);
