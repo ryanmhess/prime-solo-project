@@ -45,7 +45,7 @@ function DetailsParent() {
   }
 
   return (
-    <>
+    <div className="between-view">
       <Typography className="mobile-title" align="center" variant="h4">Quest Details</Typography>
       <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px" }}>
         <CardContent>
@@ -56,7 +56,6 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Child:"
                 value={details.username || ''}
-                // defaultValue={details.username}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -68,7 +67,6 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Category:"
                 value={details.parent_text || ''}
-                // defaultValue={details.parent_text}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -80,7 +78,6 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Description:"
                 value={details.description || ''}
-                // defaultValue={details.description}
                 multiline
                 rows={5}
                 InputProps={{
@@ -94,7 +91,6 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Status:"
                 value={status || ''}
-                // defaultValue={status}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -106,7 +102,6 @@ function DetailsParent() {
                 id="outlined-read-only-input"
                 label="Score:"
                 value={score || ''}
-                // defaultValue={score}
                 InputProps={{
                   readOnly: true,
                 }}
@@ -124,7 +119,7 @@ function DetailsParent() {
       <Stack className="mobile-nav" direction="row">
         <Button variant="outlined" className="mobile-nav-btn" onClick={questPage}>Back</Button>
       </Stack>
-    </>
+    </div>
   );
 }
 
