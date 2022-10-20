@@ -3,7 +3,7 @@ const pool = require('../modules/pool');
 const router = express.Router();
 
 router.get('/:id', (req, res) => {
-	console.log('In the GET quests router', req.params);
+	console.log('Step 3 for getting quests for ID:', req.params);
 	const id = Number(req.params.id);
 	const queryText = `
     SELECT "user".id, "quest".id AS quest_id, "category".parent_text, "quest".start, "quest".finish FROM "quest"

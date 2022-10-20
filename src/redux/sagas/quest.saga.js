@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { put, takeLatest } from 'redux-saga/effects';
+import { call, put, takeLatest } from 'redux-saga/effects';
 
 function* createQuest(action) {
     // console.log('In create quest SAGA', action.payload);
@@ -31,16 +31,21 @@ function* updateQuest(action) {
 }
 
 function* fetchQuests(action) {
-    console.log('In fetch quest SAGA', action.payload);
+    console.log('Step 2 for getting quests for ID:', action.payload);
     const id = action.payload;
     try {
-        const response = yield axios.get(`/api/quest/${id}`);
+        const response = yield call(getQuests, id)
         yield put({ type: 'SET_QUESTS', payload: response.data }); 
         console.log('SET QUESTS response data:', response.data);
     } catch (error) {
         console.log('Quest update request failed', error);
     }
 }
+
+async function getQuests(id) {
+    return await axios.get(`/api/quest/${id}`);
+}
+
 
 function* questSaga() {
     yield takeLatest('CREATE_QUEST', createQuest),

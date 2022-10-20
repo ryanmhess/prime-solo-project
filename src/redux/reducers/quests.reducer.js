@@ -1,7 +1,7 @@
 const questsReducer = (state = [], action) => {
-    console.log('In QUEST reducer with:', action.payload);
     switch (action.type) {
         case 'SET_QUESTS':
+            console.log('Step 4 for getting quests:', action.payload);
             return action.payload;
         case 'CLEAR_QUESTS':
             return [];

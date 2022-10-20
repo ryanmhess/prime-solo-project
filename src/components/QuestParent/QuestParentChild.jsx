@@ -6,11 +6,18 @@ function QuestParentChild({ child }) {
   
   const dispatch = useDispatch();
   const childId = child.id || '';
+  
   useEffect(() => {
+    console.log('Step 1 for getting quests for ID:', childId);
     dispatch({
       type: 'FETCH_QUESTS',
 			payload: childId,
 		})
+    return () => {
+      dispatch({
+        type: 'CLEAR_QUESTS'
+      })
+    }
   }, [childId]);
       
       const quests = useSelector((store) => store.quests);

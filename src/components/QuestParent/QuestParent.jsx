@@ -14,7 +14,8 @@ function QuestParent() {
 	const userPage = () => { history.push('/user') };
   const createPage = () => { history.push(`/create/${user.id}`) };
 
-  console.log('THIS IS CHILDREN::::', children)
+  console.log('THIS IS CHILDREN::::', children);
+  console.log('My User ID is:', user.id);
 
   useEffect(() => {
 		dispatch({
