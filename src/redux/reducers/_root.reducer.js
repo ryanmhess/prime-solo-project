@@ -5,6 +5,7 @@ import children from './children.reducer';
 import child from './child.reducer';
 import details from './details.reducer';
 import categories from './categories.reducer';
+import quests from './quests.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -19,6 +20,7 @@ const rootReducer = combineReducers({
   child, // will have just the child account info
   details,
   categories,
+  quests,
 });
 
 export default rootReducer;

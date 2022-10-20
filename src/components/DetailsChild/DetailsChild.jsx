@@ -17,6 +17,7 @@ function DetailsChild() {
 
   const details = useSelector((store) => store.details);
 
+
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
   const score = (details.score ? details.score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));

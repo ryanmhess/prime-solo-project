@@ -8,23 +8,25 @@ function QuestParent() {
   const dispatch = useDispatch();
   const history = useHistory();
 
-	const userId = useSelector((store) => store.user.id);
+	const user = useSelector((store) => store.user);
   const children = useSelector((store) => store.children);
 
 	const userPage = () => { history.push('/user') };
-  const createPage = () => { history.push(`/create/${userId}`) };
+  const createPage = () => { history.push(`/create/${user.id}`) };
+
+  console.log('THIS IS CHILDREN::::', children)
 
   useEffect(() => {
 		dispatch({
-			type: 'FETCH_CHILDREN_DETAILS',
-			payload: userId,
+			type: 'FETCH_CHILDREN',
+			payload: user.id,
 		})
     return () => {
       dispatch({
         type: 'CLEAR_CHILDREN'
       })
     }
-	}, [userId]);
+	}, [user.id]);
 
   return (
     <div>

@@ -18,13 +18,13 @@ function QuestChildItem({ quest }) {
     (quest.finish ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'orange' }} /> : 
       <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'red' }} />));
 
-  const detailsPage = () => { history.push(`/details/${quest.id}`) }
+  const detailsPage = () => { history.push(`/details/${quest.quest_id}`) }
   
   return (  
     <>
-      {quest.text ? 
+      {quest.child_text ? 
         <Stack spacing={5} direction="row" justifyContent="left" alignItems="center">
-          <Button className="details-btn" variant="contained" onClick={detailsPage}>{quest.text}</Button>
+          <Button className="details-btn" variant="contained" onClick={detailsPage}>{quest.child_text}</Button>
           {status} 
           {scored}
         </Stack>

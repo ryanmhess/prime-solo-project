@@ -160,5 +160,6 @@ Title Background
 -------------------------------------------------------------------------------- */
 
 body {
-  background-color: aquamarine;
+  /* background-image: url(../../../public/Quest-Logger-Test.jpg); */
+  background-color: rgb(50, 50, 50);
 }

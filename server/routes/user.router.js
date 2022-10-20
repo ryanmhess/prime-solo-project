@@ -17,7 +17,7 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 	// console.log('In the GET user/children router', req.params.id);
 	const id = req.params.id;
 	const queryText = `
-		SELECT * FROM "user"
+		SELECT "user".id, "user".username FROM "user"
 			WHERE "parent_id" = $1
 	`;
 	pool.query(queryText, [id])

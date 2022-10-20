@@ -2,6 +2,29 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 
+router.get('/:id', (req, res) => {
+	console.log('In the GET quests router', req.params);
+	const id = Number(req.params.id);
+	const queryText = `
+    SELECT "user".id, "quest".id AS quest_id, "category".parent_text, "quest".start, "quest".finish FROM "quest"
+      LEFT JOIN "category"
+        ON "quest".category_id = "category".id
+      LEFT JOIN "user"
+        ON "quest".child_id = "user".id
+      WHERE "user".id = $1
+      ORDER BY "quest".finish ASC NULLS LAST, "quest".start ASC NULLS LAST
+	`;
+	pool.query(queryText, [id])
+		.then((questsRes) => {
+			// console.log('Res rows:', questsRes.rows);
+			res.send(questsRes.rows);
+		})
+		.catch((err) => {
+			console.log('Failed to pull Quests', err);
+			res.sendStatus(500);
+		});
+});
+
 //	Route used to add a new quest
 router.post('/', (req, res) => {
 	// console.log('In the POST quest router', req.body);

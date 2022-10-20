@@ -6,7 +6,7 @@ router.put('/start/:id', (req, res) => {
 	console.log('In the PUT status router', req.params.id);
 	const sqlText = `
 		UPDATE "quest"
-			SET "start" = CURRENT_TIME
+			SET "start" = CURRENT_TIMESTAMP
 			WHERE "id" = $1;
 	`;
     const sqlValues = [req.params.id];
@@ -24,7 +24,7 @@ router.put('/finish/:id', (req, res) => {
 	console.log('In the PUT status router', req.params.id);
 	const sqlText = `
 		UPDATE "quest"
-			SET "finish" = CURRENT_TIME
+			SET "finish" = CURRENT_TIMESTAMP
 			WHERE "id" = $1;
 	`;
     const sqlValues = [req.params.id];
