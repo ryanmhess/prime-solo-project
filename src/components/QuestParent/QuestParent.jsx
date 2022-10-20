@@ -2,6 +2,15 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import QuestParentChild from './QuestParentChild';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Grid from '@mui/material/Grid';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+import TextField from '@mui/material/TextField';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
 
 function QuestParent() {
 
@@ -27,24 +36,20 @@ function QuestParent() {
 	}, [userId]);
 
   return (
-    <div>
-      <h2>Quest Parent</h2>
+    <div className="between-view" >
+      
+      <Typography className="mobile-title" align="center" variant="h4">Quest Lists</Typography>
       {children.map(child => (
         <div key={child.id}>
           <QuestParentChild child={child} />
         </div>
       ))}
-      <nav className="mobile-nav">
-				<button className="mobile-nav-btn" onClick={userPage}>
-				Home
-				</button>
-				<button className="mobile-nav-btn">
-				History
-				</button>
-        <button className="mobile-nav-btn" onClick={createPage}>
-				Create
-				</button>
-      </nav>  
+      <Stack className="mobile-nav" direction="row">
+        <Button variant="outlined" className="mobile-nav-btn" onClick={userPage}>Home</Button>
+        <Button variant="outlined" className="mobile-nav-btn">History</Button>
+        <Button variant="outlined" className="mobile-nav-btn" onClick={createPage}>Create</Button>
+      </Stack>
+      
     </div>
   );
 }
