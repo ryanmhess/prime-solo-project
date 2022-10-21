@@ -38,11 +38,10 @@ router.post('/register', (req, res, next) => {
 	// console.log('registration:', req.body);
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
-	const code = Number(req.body.code);
-	const queryText = `INSERT INTO "user" (username, password, code)
-		VALUES ($1, $2, $3) RETURNING id`;
+	const queryText = `INSERT INTO "user" (username, password)
+		VALUES ($1, $2) RETURNING id`;
 	pool
-		.query(queryText, [username, password, code])
+		.query(queryText, [username, password])
 		.then(() => res.sendStatus(201))
 		.catch((err) => {
 		console.log('User registration failed: ', err);
@@ -57,8 +56,8 @@ router.post('/register/:id', (req, res, next) => {
 	const username = req.body.username;
 	const password = encryptLib.encryptPassword(req.body.password);
 	const parent_id = req.body.parent_id;
-	const queryText = `INSERT INTO "user" (username, password, code, is_parent, parent_id)
-		VALUES ($1, $2, NULL, FALSE, $3) RETURNING id`;
+	const queryText = `INSERT INTO "user" (username, password, is_parent, parent_id)
+		VALUES ($1, $2, FALSE, $3) RETURNING id`;
 	pool
 		.query(queryText, [username, password, parent_id])
 		.then(() => res.sendStatus(201))

@@ -14,7 +14,7 @@ function TitlePage() {
 
   return (
     <div className="titleBack">
-      <h2>Title Page</h2>
+      <h2>Quest Logger</h2>
       <nav className="mobile-nav">
         <button className="mobile-nav-btn" onClick={loginPage}>
           Login
