@@ -14,9 +14,9 @@ function QuestChildItem({ quest }) {
     (quest.finish ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
       <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'orange' }} />));
   
-      const scored = (quest.score ? <CheckBoxTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
-    (quest.finish ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'orange' }} /> : 
-      <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'red' }} />));
+      const scored = (quest.score === null ? <CheckBoxTwoToneIcon fontSize="large" style={{ color: 'red' }} /> : 
+    (quest.finish ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
+      <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'orange' }} />));
 
   const detailsPage = () => { history.push(`/details/${quest.quest_id}`) }
   
