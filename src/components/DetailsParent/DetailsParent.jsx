@@ -78,12 +78,15 @@ function DetailsParent() {
       <Typography className="mobile-title" align="center" variant="h4">
         {!edit ? 'Quest Details' : 'Edit Quest Details'}
       </Typography>
-      <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px" }}>
+      <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px", backgroundColor: '' }}>
         <CardContent>
           <Grid container spacing={2}>
             <Grid xs={12} item>
               <TextField
                 fullWidth
+                error
+                variant="filled"
+                sx={{ input: {color: 'red'}}}
                 id="outlined-read-only-input"
                 label="Child:"
                 value={details.username || ''}
@@ -96,6 +99,8 @@ function DetailsParent() {
               {!edit ?
               <TextField
                 fullWidth
+                error
+                variant="filled"
                 id="outlined-read-only-input"
                 label="Category:"
                 value={details.parent_text || ''}
@@ -109,6 +114,7 @@ function DetailsParent() {
                 isOptionEqualToValue={(option, value) => option.parent_text === value.parent_text}
                 id="combo-box-demo"
                 autoComplete
+                variant="error"
                 includeInputInList
                 value={{id: details.category_id, parent_text: details.parent_text, child_text: details.child_text }}
                 onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
@@ -120,6 +126,8 @@ function DetailsParent() {
               {!edit ?
               <TextField
                 fullWidth
+                error
+                variant="filled"
                 id="outlined-read-only-input"
                 label="Description:"
                 value={details.description || ''}
@@ -132,6 +140,7 @@ function DetailsParent() {
               :
               <TextField 
                 required 
+                error
                 id="outlined-basic" 
                 type="text" 
                 label="Description" 
@@ -147,6 +156,8 @@ function DetailsParent() {
             <Grid xs={12} item>
               <TextField
                 fullWidth
+                error
+                variant="filled"
                 id="outlined-read-only-input"
                 label="Status:"
                 value={status || ''}
@@ -158,6 +169,8 @@ function DetailsParent() {
             <Grid xs={12} item>
               <TextField
                 fullWidth
+                error
+                variant="filled"
                 id="outlined-read-only-input"
                 label="Score:"
                 value={score || ''}
