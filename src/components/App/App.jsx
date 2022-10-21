@@ -14,7 +14,7 @@ import QuestParent from '../QuestParent/QuestParent'; //  List of all children a
 import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to Home and History
 import DetailsParent from '../DetailsParent/DetailsParent';
 import DetailsChild from '../DetailsChild/DetailsChild';
-import EditPage from '../EditPage/EditPage';
+// import EditPage from '../EditPage/EditPage';
 import CreatePage from '../CreatePage/CreatePage';
 import './App.css';
 
@@ -31,7 +31,6 @@ function App() {
 	return (
 		<Router>
 			<div>
-				
 				<Switch>
 					<Redirect exact from="/" to="/title" />
 						{/* Visiting localhost:3000 will redirect to localhost:3000/home */}
@@ -77,10 +76,10 @@ function App() {
 						{user.is_parent ? <DetailsParent /> : <DetailsChild /> }
 					</ProtectedRoute>
 
-          <ProtectedRoute exact path="/edit/:id" >	
+          {/* <ProtectedRoute exact path="/edit/:id" >	 */}
             {/* logged in shows QuestParent or QuestChild else shows TitlePage */}
-						{user.is_parent ? <EditPage /> : <Redirect to="/quest" /> }
-					</ProtectedRoute>
+						{/* {user.is_parent ? <EditPage /> : <Redirect to="/quest" /> }
+					</ProtectedRoute> */}
 
           <Route exact path="/about" >	// shows AboutPage at all times (logged in or not)
 						{/* Visiting localhost:3000/about will show the about page. */}
