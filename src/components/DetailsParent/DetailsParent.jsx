@@ -9,6 +9,11 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
+import Radio from '@mui/material/Radio';
+import RadioGroup from '@mui/material/RadioGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import FormControl from '@mui/material/FormControl';
+import FormLabel from '@mui/material/FormLabel';
 
 function DetailsParent() {
 
@@ -16,13 +21,16 @@ function DetailsParent() {
   const history = useHistory();
   const params = useParams();
   const [edit, setEdit] = useState(false);
+  const [score, setScore] = useState(null);
   const details = useSelector((store) => store.details);
   const categories = useSelector((store) => store.categories);
 
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
-  const score = (details.score ? details.score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
+  const scoreCheck = (details.score ? score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
   
+  console.log('scoreVal: ', Number(score));
+
   useEffect(() => {
     dispatch({
 			type: 'FETCH_QUEST_DETAILS',
@@ -50,6 +58,7 @@ function DetailsParent() {
   };
   
   const handleConfirm = () => {
+    details.score = score;
     dispatch({
       type: 'UPDATE_QUEST',
       payload: details
@@ -118,7 +127,7 @@ function DetailsParent() {
                 includeInputInList
                 value={{id: details.category_id, parent_text: details.parent_text, child_text: details.child_text }}
                 onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
-                renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required /> )}
+                renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required error/> )}
               />
               }
             </Grid>
@@ -167,21 +176,34 @@ function DetailsParent() {
               />
             </Grid>
             <Grid xs={12} item>
+              {!edit ?
               <TextField
                 fullWidth
                 error
                 variant="filled"
                 id="outlined-read-only-input"
                 label="Score:"
-                value={score || ''}
+                value={scoreCheck || ''}
                 InputProps={{
                   readOnly: true,
                 }}
               />
+              :
+              <FormControl>
+                <FormLabel id="demo-row-radio-buttons-group-label" error >Score:</FormLabel>
+                <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                  <FormControlLabel className="radio-btn-control" value={100} control={<Radio className="radio-btn" color="error" size="xsmall" required/>} label="Poor" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                  <FormControlLabel className="radio-btn-control" value={200} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="<-----" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                  <FormControlLabel className="radio-btn-control" value={300} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="-------" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                  <FormControlLabel className="radio-btn-control" value={400} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="----->" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                  <FormControlLabel className="radio-btn-control" value={500} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="Great" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                </RadioGroup>
+              </FormControl>
+              }
             </Grid>
             <Grid xs={12} item>
               <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
-                {!edit ? <Button variant="outlined"  className="mobile-nav-btn" onClick={handleEdit}>Edit</Button> 
+                {!edit ? <Button variant="outlined" error className="mobile-nav-btn" onClick={handleEdit}>Edit</Button> 
                   : <Button variant="outlined"  className="mobile-nav-btn" onClick={handleConfirm}>Confirm</Button>
                 }
                 {!edit ? <Button variant="outlined"  className="mobile-nav-btn" onClick={handleDelete}>Delete</Button> 
