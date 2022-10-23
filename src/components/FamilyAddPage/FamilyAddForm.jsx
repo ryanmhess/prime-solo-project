@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import Stack from '@mui/material/Stack';
+import Button from '@mui/material/Button';
 
 //  function that registers a new child account to the
 //  logged in parent account
@@ -32,41 +35,36 @@ function FamilyAddForm({ child }) {
 	}; // end registerUser
 
 	return (
-		<form className="formPanel childItem" onSubmit={registerUser}>
-			<h2>Register Child</h2>
+		<>
 			{errors.registrationMessage && (
 				<h3 className="alert" role="alert">
 				{errors.registrationMessage}
 				</h3>
 			)}
-			<div>
-				<label htmlFor="username">
-				Username:
-				<input
-					type="text"
-					name="username"
-					value={username}
-					required
-					onChange={(event) => setUsername(event.target.value)}
-				/>
-				</label>
-			</div>
-			<div>
-				<label htmlFor="password">
-				Password:
-				<input
-					type="password"
-					name="password"
-					value={password}
-					required
-					onChange={(event) => setPassword(event.target.value)}
-				/>
-				</label>
-			</div>
-			<div>
-				<input className="btn" type="submit" name="submit" value="Register" />
-			</div>
-		</form>
+			<Stack direction="column" spacing={1} alignItems="center">
+        <TextField 
+          required
+          error
+          type="text" 
+          label="Username" 
+          placeholder="Enter Username" 
+          value={username}
+          onChange={(event) => { setUsername(event.target.value); }}
+          fullWidth
+        />
+        <TextField 
+          required
+          error
+          type="password" 
+          label="Password" 
+          placeholder="Enter Password" 
+          value={password}
+          onChange={(event) => { setPassword(event.target.value); }}
+          fullWidth
+        />
+        <Button sx={{opacity: '80%', mt: 2}} color='error' variant="contained" onClick={registerUser}><span>ADD CHILD</span></Button>
+      </Stack>
+		</>
 	);
 }
 

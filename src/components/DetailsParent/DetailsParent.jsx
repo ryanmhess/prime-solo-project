@@ -27,7 +27,7 @@ function DetailsParent() {
 
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
-  const scoreCheck = (details.score ? score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
+  const scoreCheck = (details.score === null || details.score === 0 ? score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
   
   console.log('scoreVal: ', Number(score));
 
@@ -85,137 +85,137 @@ function DetailsParent() {
   return (
     <div className="between-view">
       <Typography className="mobile-title" align="center" variant="h4">
-        {!edit ? 'Quest Details' : 'Edit Quest Details'}
+        {!edit ? <span>QUEST DETAILS</span> : <span>EDIT QUEST DETAILS</span>}
       </Typography>
-      <Card position='fixed' style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px", backgroundColor: '' }}>
-        <CardContent>
-          <Grid container spacing={2}>
-            <Grid xs={12} item>
-              <TextField
-                fullWidth
-                error
-                variant="filled"
-                sx={{ input: {color: 'red'}}}
-                id="outlined-read-only-input"
-                label="Child:"
-                value={details.username || ''}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-            </Grid>
-            <Grid xs={12} item>
-              {!edit ?
-              <TextField
-                fullWidth
-                error
-                variant="filled"
-                id="outlined-read-only-input"
-                label="Category:"
-                value={details.parent_text || ''}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              :
-              <Autocomplete
-                {...categoryNames}
-                isOptionEqualToValue={(option, value) => option.parent_text === value.parent_text}
-                id="combo-box-demo"
-                autoComplete
-                variant="error"
-                includeInputInList
-                value={{id: details.category_id, parent_text: details.parent_text, child_text: details.child_text }}
-                onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
-                renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required error/> )}
-              />
-              }
-            </Grid>
-            <Grid xs={12} style={{margin: 'auto'}} item>
-              {!edit ?
-              <TextField
-                fullWidth
-                error
-                variant="filled"
-                id="outlined-read-only-input"
-                label="Description:"
-                value={details.description || ''}
-                multiline
-                rows={5}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              :
-              <TextField 
-                required 
-                error
-                id="outlined-basic" 
-                type="text" 
-                label="Description" 
-                placeholder="Detailed description goes here" 
-                multiline 
-                rows={5} 
-                value={details.description || ''}
-                onChange={(event) => dispatch({type: 'EDIT_DESCRIPTION', payload: event.target.value})}
-                fullWidth
-              />
-              }
-            </Grid>
-            <Grid xs={12} item>
-              <TextField
-                fullWidth
-                error
-                variant="filled"
-                id="outlined-read-only-input"
-                label="Status:"
-                value={status || ''}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-            </Grid>
-            <Grid xs={12} item>
-              {!edit ?
-              <TextField
-                fullWidth
-                error
-                variant="filled"
-                id="outlined-read-only-input"
-                label="Score:"
-                value={scoreCheck || ''}
-                InputProps={{
-                  readOnly: true,
-                }}
-              />
-              :
-              <FormControl>
-                <FormLabel id="demo-row-radio-buttons-group-label" error >Score:</FormLabel>
-                <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
-                  <FormControlLabel className="radio-btn-control" value={100} control={<Radio className="radio-btn" color="error" size="xsmall" required/>} label="Poor" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
-                  <FormControlLabel className="radio-btn-control" value={200} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="<-----" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
-                  <FormControlLabel className="radio-btn-control" value={300} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="-------" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
-                  <FormControlLabel className="radio-btn-control" value={400} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="----->" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
-                  <FormControlLabel className="radio-btn-control" value={500} control={<Radio className="radio-btn" color="error" size="xsmall" />} label="Great" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
-                </RadioGroup>
-              </FormControl>
-              }
-            </Grid>
-            <Grid xs={12} item>
-              <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
-                {!edit ? <Button variant="outlined" error className="mobile-nav-btn" onClick={handleEdit}>Edit</Button> 
-                  : <Button variant="outlined"  className="mobile-nav-btn" onClick={handleConfirm}>Confirm</Button>
+      <Stack direction="column" alignItems="center">
+        <Card sx={{  width: '80%', my: '10%', mt: 5, opacity: '80%'}}>
+          <CardContent>
+            <Grid container spacing={2}>
+              <Grid xs={12} item>
+                <TextField
+                  fullWidth
+                  error
+                  variant="filled"
+                  id="outlined-read-only-input"
+                  label="Child:"
+                  value={details.username || ''}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+              </Grid>
+              <Grid xs={12} item>
+                {!edit ?
+                <TextField
+                  fullWidth
+                  error
+                  variant="filled"
+                  id="outlined-read-only-input"
+                  label="Category:"
+                  value={details.parent_text || ''}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                :
+                <Autocomplete
+                  {...categoryNames}
+                  isOptionEqualToValue={(option, value) => option.parent_text === value.parent_text}
+                  id="combo-box-demo"
+                  autoComplete
+                  includeInputInList
+                  value={{id: details.category_id, parent_text: details.parent_text, child_text: details.child_text }}
+                  onChange={(event, newCategory) => dispatch({type: 'EDIT_CATEGORY', payload: newCategory})}
+                  renderInput={(params) => ( <TextField {...params} label="Category" placeholder="Select Category" required error/> )}
+                />
                 }
-                {!edit ? <Button variant="outlined"  className="mobile-nav-btn" onClick={handleDelete}>Delete</Button> 
-                  : <Button variant="outlined"  className="mobile-nav-btn" onClick={handleCancel}>Cancel</Button>
+              </Grid>
+              <Grid xs={12} style={{margin: 'auto'}} item>
+                {!edit ?
+                <TextField
+                  fullWidth
+                  error
+                  variant="filled"
+                  id="outlined-read-only-input"
+                  label="Description:"
+                  value={details.description || ''}
+                  multiline
+                  rows={5}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                :
+                <TextField 
+                  required 
+                  error
+                  id="outlined-basic" 
+                  type="text" 
+                  label="Description" 
+                  placeholder="Detailed description goes here" 
+                  multiline 
+                  rows={5} 
+                  value={details.description || ''}
+                  onChange={(event) => dispatch({type: 'EDIT_DESCRIPTION', payload: event.target.value})}
+                  fullWidth
+                />
                 }
-              </Stack>
+              </Grid>
+              <Grid xs={12} item>
+                <TextField
+                  fullWidth
+                  error
+                  variant="filled"
+                  id="outlined-read-only-input"
+                  label="Status:"
+                  value={status || ''}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+              </Grid>
+              <Grid xs={12} item>
+                {!edit ?
+                <TextField
+                  fullWidth
+                  error
+                  variant="filled"
+                  id="outlined-read-only-input"
+                  label="Score:"
+                  value={scoreCheck || ''}
+                  InputProps={{
+                    readOnly: true,
+                  }}
+                />
+                :
+                <FormControl>
+                  <FormLabel id="demo-row-radio-buttons-group-label" error >Score:</FormLabel>
+                  <RadioGroup row aria-labelledby="demo-row-radio-buttons-group-label" name="row-radio-buttons-group">
+                    <FormControlLabel className="radio-btn-control" value={100} control={<Radio className="radio-btn" color="error" size="small" required/>} label="Poor" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                    <FormControlLabel className="radio-btn-control" value={200} control={<Radio className="radio-btn" color="error" size="small" />} label="<---" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                    <FormControlLabel className="radio-btn-control" value={300} control={<Radio className="radio-btn" color="error" size="small" />} label="----" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                    <FormControlLabel className="radio-btn-control" value={400} control={<Radio className="radio-btn" color="error" size="small" />} label="--->" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                    <FormControlLabel className="radio-btn-control" value={500} control={<Radio className="radio-btn" color="error" size="small" />} label="Great" labelPlacement="top" onChange={(event) => setScore(event.target.value)}/>
+                  </RadioGroup>
+                </FormControl>
+                }
+              </Grid>
+              <Grid xs={12} item>
+                <Stack spacing={7} direction="row" justifyContent="center" alignItems="center">
+                  {!edit ? <Button sx={{opacity: '80%'}} color='error' variant="contained" onClick={handleEdit}><span>EDIT</span></Button> 
+                    : <Button sx={{opacity: '80%'}} color='error' variant="contained" onClick={handleConfirm}><span>CONFIRM</span></Button>
+                  }
+                  {!edit ? <Button sx={{opacity: '80%'}} color='error' variant="contained" onClick={handleDelete}><span>DELETE</span></Button> 
+                    : <Button sx={{opacity: '80%'}} color='error' variant="contained" onClick={handleCancel}><span>CANCEL</span></Button>
+                  }
+                </Stack>
+              </Grid>
             </Grid>
-          </Grid>
-        </CardContent>
-      </Card>
+          </CardContent>
+        </Card>
+      </Stack>
       <Stack className="mobile-nav" direction="row">
-        <Button variant="outlined" className="mobile-nav-btn" onClick={handleBack}>Back</Button>
+        <Button sx={{opacity: '80%'}} color='error' variant="contained" onClick={handleBack}><span>BACK</span></Button>
       </Stack>
     </div>
   );

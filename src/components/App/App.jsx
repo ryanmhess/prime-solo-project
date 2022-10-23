@@ -6,10 +6,10 @@ import AboutPage from '../AboutPage/AboutPage'; //  Not using this at the moment
 import UserPage from '../UserPage/UserPage';  //  Similar to TitlePage - Nav to Quest and Family(parent only)
 import InfoPage from '../InfoPage/InfoPage';  //  Not using this at the moment
 import TitlePage from '../TitlePage/TitlePage'; //  Basic Landing Page - Nav to Login and Registration
-import LoginPage from '../LoginPage/LoginPage'; //  Where users login - Nav to Title and Registration
-import RegisterPage from '../RegisterPage/RegisterPage';  //  Where new users register - Nav to Title and Login
+// import LoginPage from '../LoginPage/LoginPage'; //  Where users login - Nav to Title and Registration
+// import RegisterPage from '../RegisterPage/RegisterPage';  //  Where new users register - Nav to Title and Login
 import FamilyPage from '../FamilyPage/FamilyPage';  //  List of child accounts - Nav to User and FamilyAdd
-import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
+// import FamilyAddPage from '../FamilyAddPage/FamilyAddPage'; //  Registers new child account - Nav to User and Family
 import QuestParent from '../QuestParent/QuestParent'; //  List of all children and associated quests - Nav to Home, History and Create
 import QuestChild from '../QuestChild/QuestChild';  //  List of quests - Nav to Home and History
 import DetailsParent from '../DetailsParent/DetailsParent';
@@ -38,14 +38,17 @@ function App() {
 						{/* If the user is already logged in, redirect them to the /user page Otherwise, show the Landing page */}
 						{user.id ? <Redirect to="/user" /> : <TitlePage /> }
 					</Route>
-					<Route exact path="/login" >
+
+
+					{/* <Route exact path="/login" > */}
 						{/* If the user is already logged in, redirect to the /user page Otherwise, show the login page */}
-						{user.id ? <Redirect to="/user" /> : <LoginPage /> }
-					</Route>
-					<Route exact path="/registration" >
+						{/* {user.id ? <Redirect to="/user" /> : <LoginPage /> }
+					</Route> */}
+					{/* <Route exact path="/registration" > */}
 						{/* If the user is already logged in, redirect them to the /user page Otherwise, show the registration page */}
-						{user.id ? <Redirect to="/user" /> : <RegisterPage /> }
-					</Route>
+						{/* {user.id ? <Redirect to="/user" /> : <RegisterPage /> }
+					</Route> */}
+
 
 					<ProtectedRoute exact path="/user" >	
             {/* logged in shows UserPage else shows TitlePage */}
@@ -55,10 +58,13 @@ function App() {
             {/* logged in shows FamilyPage else shows TitlePage */}
 						{user.is_parent ? <FamilyPage /> : <Redirect to="/user" /> }
 					</ProtectedRoute>
-          <ProtectedRoute exact path="/family/add" >	
+
+
+          {/* <ProtectedRoute exact path="/family/add" >	 */}
             {/* logged in shows FamilyPage else shows TitlePage */}
-						{user.is_parent ? <FamilyAddPage /> : <Redirect to="/user" /> }
-					</ProtectedRoute>
+						{/* {user.is_parent ? <FamilyAddPage /> : <Redirect to="/user" /> }
+					</ProtectedRoute> */}
+
 
           <ProtectedRoute exact path="/quest" >	
             {/* logged in shows QuestParent or QuestChild else shows TitlePage */}

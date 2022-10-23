@@ -2,15 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import QuestParentChild from './QuestParentChild';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 function QuestParent() {
 
@@ -36,18 +32,20 @@ function QuestParent() {
 	}, [userId]);
 
   return (
-    <div className="between-view" >
-      
-      <Typography className="mobile-title" align="center" variant="h4">Quest Lists</Typography>
-      {children.map(child => (
-        <div key={child.id}>
-          <QuestParentChild child={child} />
-        </div>
-      ))}
-      <Stack className="mobile-nav" direction="row">
-        <Button variant="outlined" className="mobile-nav-btn" onClick={userPage}>Home</Button>
-        <Button variant="outlined" className="mobile-nav-btn">History</Button>
-        <Button variant="outlined" className="mobile-nav-btn" onClick={createPage}>Create</Button>
+    <div className="between-view" sx={{height: '40rem'}}>
+      <Typography className="mobile-title" align="center" variant="h4"><span>QUEST LISTS</span></Typography>
+      <Stack  direction="column" alignItems="center">
+        <Card className="in-between" sx={{ width: '80%', my: '10%', mt: 5, opacity: '80%'}}>
+          {children.map(child => (
+            <CardContent key={child.id}>
+              <QuestParentChild child={child} />
+            </CardContent>
+          ))}
+        </Card>
+      </Stack>
+      <Stack spacing={-20} className="mobile-nav" direction="row">
+        <Button sx={{opacity: '80%'}} color='error' variant="contained" className="mobile-nav-btn" onClick={userPage}><span>HOME</span></Button>
+        <Button sx={{opacity: '80%'}} color='error' variant="contained" className="mobile-nav-btn" onClick={createPage}><span>CREATE</span></Button>
       </Stack>
       
     </div>

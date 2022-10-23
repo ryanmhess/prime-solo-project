@@ -2,8 +2,9 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
+import Divider from '@mui/material/Divider';
 
 //  function that handles the removal of child account from db
 function FamilyItem({ child }) {
@@ -25,13 +26,14 @@ function FamilyItem({ child }) {
       <Stack direction="row" justifyContent="center" alignItems="center">       
         <Grid container spacing={2}>
           <Grid xs={6} item align="center">
-          <Typography gutterBottom variant="h5">{child.username}</Typography>
+          <Typography gutterBottom variant="h5"><span>{child.username}</span></Typography>
           </Grid>
           <Grid xs={6} item align="center">
-            <Button variant="outlined"  className="mobile-nav-btn" onClick={removeChild}>Remove</Button>
+            <DeleteTwoToneIcon color='error' onClick={removeChild}/>
           </Grid>
         </Grid>
       </Stack>
+      <Divider />
     </>
   )
 }

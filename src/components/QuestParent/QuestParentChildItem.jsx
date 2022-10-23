@@ -24,7 +24,7 @@ function QuestParentChildItem({ quest }) {
     <>
       {quest.text ? 
         <Stack spacing={5} direction="row" justifyContent="left" alignItems="center"> 
-          <Button className="details-btn" variant="outlined" color="error" onClick={detailsPage}>{quest.text}</Button>
+          <Button sx={{opacity: '80%'}} className="details-btn" variant="contained" color="error" onClick={detailsPage}><span>{quest.text}</span></Button>
           {status} 
           {scored}
         </Stack> : "" }
