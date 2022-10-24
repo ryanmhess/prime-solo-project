@@ -107,6 +107,24 @@ function AboutPage() {
                 excel and supporting us on this brain melting quest to change our futures!
               </span>
             </Typography>
+            <Typography sx={{ mt: 1.5, mb: 1.5 }} variant="body1" align='justify'>
+              <span> CONNECT: </span>
+            </Typography>
+            <Typography variant="body1" color="text.secondary" align='justify'>
+              <span>
+                EMAIL: ryanmhess@gmail.com
+              </span>
+            </Typography>
+            <Typography variant="body1" color="text.secondary" align='justify'>
+              <span>
+                LINKEDIN: https://www.linkedin.com/in/ryanmhess80/
+              </span>
+            </Typography>
+            <Typography variant="body1" color="text.secondary" align='justify'>
+              <span>
+                GITHUB: https://github.com/ryanmhess
+              </span>
+            </Typography>
           </CardContent>
         </Card>
         </Stack>
