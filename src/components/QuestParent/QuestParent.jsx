@@ -47,7 +47,6 @@ function QuestParent() {
         <Button sx={{opacity: '80%'}} color='error' variant="contained" className="mobile-nav-btn" onClick={userPage}><span>HOME</span></Button>
         <Button sx={{opacity: '80%'}} color='error' variant="contained" className="mobile-nav-btn" onClick={createPage}><span>CREATE</span></Button>
       </Stack>
-      
     </div>
   );
 }

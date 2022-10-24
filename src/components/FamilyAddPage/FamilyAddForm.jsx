@@ -4,6 +4,7 @@ import { useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
+import swal from 'sweetalert';
 
 //  function that registers a new child account to the
 //  logged in parent account
@@ -20,14 +21,19 @@ function FamilyAddForm({ child }) {
 
 	const registerUser = (event) => {
 		event.preventDefault();
-
-		dispatch({
-			type: 'REGISTER_CHILD',
-			payload: {
-				username: username,
-				password: password,
-				parent_id: parent_id,
-			},
+		swal({
+			title: "Congratulations!",
+			text: "Registration Of Child Account Complete!",
+			icon: "success",
+		}).then(() => {
+      dispatch({
+        type: 'REGISTER_CHILD',
+        payload: {
+          username: username,
+          password: password,
+          parent_id: parent_id,
+        },
+      })
 		});
 		setUsername('');
 		setPassword('');

@@ -5,6 +5,7 @@ import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import DeleteTwoToneIcon from '@mui/icons-material/DeleteTwoTone';
 import Divider from '@mui/material/Divider';
+import swal from 'sweetalert';
 
 //  function that handles the removal of child account from db
 function FamilyItem({ child }) {
@@ -15,9 +16,25 @@ function FamilyItem({ child }) {
   const removeChild = () => {
     // console.log(`This button will remove ${child.username} with ID: ${child.id}.`);
     const childIdToRemove = child.id;
-    dispatch({
-      type: 'REMOVE_CHILD',
-      payload: {childIdToRemove, userId}
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, this child username will be removed from your list.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Username Removed.", {
+          icon: "success",
+        });
+        dispatch({
+          type: 'REMOVE_CHILD',
+          payload: {childIdToRemove, userId}
+        });
+      } else {
+        swal("Your child username is safe!");
+      }
     });
   }
 

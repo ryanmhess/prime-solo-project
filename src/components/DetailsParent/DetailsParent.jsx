@@ -14,6 +14,7 @@ import RadioGroup from '@mui/material/RadioGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormControl from '@mui/material/FormControl';
 import FormLabel from '@mui/material/FormLabel';
+import swal from 'sweetalert';
 
 function DetailsParent() {
 
@@ -27,7 +28,7 @@ function DetailsParent() {
 
   const questId = params.id;
   const status = (details.start === null ? 'Not Started' : (details.finish ? 'Finished' : 'In Progress'));
-  const scoreCheck = (details.score === null || details.score === 0 ? score : (details.finish ? 'Score Pending' : 'Complete Quest For Score'));
+  const scoreCheck = (details.score === null || details.score === 0 ? (details.finish ? 'Score Pending' : 'Complete Quest For Score') : (details.score === null || details.score === 0 ? score : details.score));
   
   console.log('scoreVal: ', Number(score));
 
@@ -59,19 +60,51 @@ function DetailsParent() {
   
   const handleConfirm = () => {
     details.score = score;
-    dispatch({
-      type: 'UPDATE_QUEST',
-      payload: details
+    swal({
+      title: "Are you sure?",
+      text: "This will apply the changes made.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
     })
-    setEdit(!edit);
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Quest Updated", {
+          icon: "success",
+        });
+        dispatch({
+          type: 'UPDATE_QUEST',
+          payload: details
+        })
+        setEdit(!edit);
+      } else {
+        swal("No changes made.");
+      }
+    });
   }
   
-    const handleDelete = () => {
-    dispatch({
-			type: 'DELETE_QUEST',
-			payload: questId
-		})
-    questPage();
+  const handleDelete = () => {
+    swal({
+      title: "Are you sure?",
+      text: "Once deleted, this quest will be removed from your childs list.",
+      icon: "warning",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        swal("Quest Deleted", {
+          icon: "success",
+        });
+        dispatch({
+          type: 'DELETE_QUEST',
+          payload: questId
+        })
+        handleBack();
+      } else {
+        swal("This quest is safe!");
+      }
+    });
   };
   
     const handleCancel = () => { 

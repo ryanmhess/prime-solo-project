@@ -8,6 +8,7 @@ import detailsSaga from './details.saga';
 import categoriesSaga from './categories.saga';
 import questSaga from './quest.saga';
 import statusSaga from './status.saga';
+import scoreSaga from './score.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -27,5 +28,6 @@ export default function* rootSaga() {
     categoriesSaga(),
     questSaga(),
     statusSaga(),
+    scoreSaga(),
   ]);
 }

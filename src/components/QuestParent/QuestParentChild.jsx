@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import QuestParentChildItem from './QuestParentChildItem';
 import { styled } from '@mui/material/styles';
 import Stack from '@mui/material/Stack';
@@ -57,14 +57,14 @@ function QuestParentChild({ child }) {
     borderTop: '1px solid rgba(0, 0, 0, .125)',
   }));
 
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = useState('');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
   return (
-    <Accordion onChange={handleChange('panel1')}>
+    <Accordion expanded={expanded === child.id} onChange={handleChange(child.id)}> 
       <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" >
         <Typography variant="h4">
           <span>{child.username}</span>
@@ -85,7 +85,7 @@ function QuestParentChild({ child }) {
           </Stack>
         </Stack>
       </AccordionDetails>
-      {quests.map((quest, i) => (
+      {quests.map((quest) => (
         <AccordionDetails key={quest.id} direction="column">
           <QuestParentChildItem quest={quest} />
         </AccordionDetails>

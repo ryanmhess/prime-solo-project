@@ -10,6 +10,7 @@ import CardContent from '@mui/material/CardContent';
 import { styled } from '@mui/material/styles';
 import Switch from '@mui/material/Switch';
 import TextField from '@mui/material/TextField';
+import swal from 'sweetalert';
 
 function TitlePage() {
   
@@ -42,15 +43,24 @@ function TitlePage() {
   }
 
   const registerUser = (event) => {
-    event.preventDefault();
-    dispatch({
-      type: 'REGISTER',
-      payload: {
-        username: username,
-        password: password,
-      },
-    });
+    swal({
+      title: "Congratulations!",
+      text: "Registration Complete!",
+      icon: "success",
+    }).then(() => {
+      dispatch({
+        type: 'REGISTER',
+        payload: {
+          username: username,
+          password: password,
+        },
+      });
+    })
   };
+
+  const aboutPage = () => {
+    history.push('/about');
+  }
 
   const AntSwitch = styled(Switch)(({ theme }) => ({
     width: 28,
@@ -92,13 +102,6 @@ function TitlePage() {
       boxSizing: 'border-box',
     },
   }));
-
-  const loginPage = () => {
-    history.push('/login');
-  };
-  const registrationPage = () => {
-    history.push('/registration');
-  };
 
   return (
     <div>
@@ -175,9 +178,10 @@ function TitlePage() {
         </Card>
         </Stack>
       </div>
-      <Stack spacing={0} direction="row" className="mobile-nav">
+      <Stack spacing={-20} direction="row" className="mobile-nav">
         {!checked ? <Button sx={{opacity: '80%'}} color="error" variant="contained" className="mobile-nav-btn" onClick={login}><span>LOGIN</span></Button>
-        : <Button sx={{opacity: '80%'}} color="error" variant="contained" className="mobile-nav-btn" onClick={registerUser}>Submit Registration</Button>}
+        : <Button sx={{opacity: '80%'}} color="error" variant="contained" className="mobile-nav-btn" onClick={registerUser}><span>REGISTER</span></Button>}
+        <Button sx={{opacity: '80%'}} color="error" variant="contained" className="mobile-nav-btn" onClick={aboutPage}><span>ABOUT</span></Button>
       </Stack>
     </div>
   );

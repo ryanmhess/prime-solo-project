@@ -10,13 +10,15 @@ function QuestParentChildItem({ quest }) {
 
   const history = useHistory();
 
-  const status = (quest.start === null ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'red' }} /> : 
-    (quest.finish ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
-    <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'orange' }} />));
+  const status = (quest.start === null ? 
+    <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'red' }} /> : 
+    (quest.finish === null ? <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'orange' }} /> : 
+    <AccessTimeTwoToneIcon fontSize="large" style={{ color: 'green' }} />));
   
-  const scored = (quest.score ? <CheckBoxTwoToneIcon fontSize="large" style={{ color: 'green' }} /> : 
-    (quest.finish ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'orange' }} /> : 
-    <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'red' }} />));
+  const scored = (quest.score === null || quest.score === 0 ? 
+    (quest.finish === null ? <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'red' }} /> : 
+    <CheckBoxTwoToneIcon fontSize="large" style={{ color: 'orange' }} />) : 
+    <DisabledByDefaultTwoToneIcon fontSize="large" style={{ color: 'green' }} />);
 
   const detailsPage = () => { history.push(`/details/${quest.id}`) }
 

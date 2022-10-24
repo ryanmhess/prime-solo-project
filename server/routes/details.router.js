@@ -33,7 +33,7 @@ router.put('/:id', (req, res) => {
         "description" = $2,
         "score" = $3 
       WHERE 
-        "id" = $4
+        "id" = $4;
   `;
   const sqlValues = [req.body.category_id, req.body.description, req.body.score];
   pool.query(sqlText, sqlValues)

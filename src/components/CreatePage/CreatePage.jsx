@@ -9,7 +9,7 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Autocomplete from '@mui/material/Autocomplete';
-
+import swal from 'sweetalert';
 
 function CreatePage() {
 
@@ -53,21 +53,27 @@ function CreatePage() {
 
   const handleCreate = (event) => {
     event.preventDefault();
-    dispatch({
-      type: 'CREATE_QUEST',
-      payload: {
-        child_id: child.id,
-        category_id: category.id,
-        description: description
-      }
+    swal({
+      title: "Congratulations!",
+      text: "New Quest Created!",
+      icon: "success",
+    }).then(() => {
+      dispatch({
+        type: 'CREATE_QUEST',
+        payload: {
+          child_id: child.id,
+          category_id: category.id,
+          description: description
+        }
+      })
+      dispatch({
+        type: 'CLEAR_CHILDREN'
+      })
+      setChild(null);
+      setCategory(null);
+      setDescription('');
+      handleCancel();
     })
-    dispatch({
-      type: 'CLEAR_CHILDREN'
-    })
-    setChild(null);
-    setCategory(null);
-    setDescription('');
-    handleCancel();
   }
 
   return (

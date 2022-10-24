@@ -14,6 +14,7 @@ const detailsRouter = require('./routes/details.router');
 const categoriesRouter = require('./routes/categories.router');
 const questRouter = require('./routes/quest.router');
 const statusRouter = require('./routes/status.router');
+const scoreRouter = require('./routes/score.router');
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -33,6 +34,7 @@ app.use('/api/details', detailsRouter);
 app.use('/api/categories', categoriesRouter);
 app.use('/api/quest', questRouter);
 app.use('/api/status', statusRouter);
+app.use('/api/score', scoreRouter);
 
 // Serve static files
 app.use(express.static('build'));

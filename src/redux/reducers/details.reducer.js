@@ -1,5 +1,5 @@
 const detailsReducer = (state = {}, action) => {
-    console.log('In details reducer with:', action.payload);
+    // console.log('In details reducer with:', action.payload);
     switch (action.type) {
         case 'SET_QUEST_DETAILS':
             return action.payload;

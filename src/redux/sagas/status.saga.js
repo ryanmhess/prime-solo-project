@@ -34,10 +34,22 @@ function* resetStatus(action) {
     }
 }
 
+function* removeStatus(action) {
+    console.log('In remove status SAGA', action.payload);
+    const id = Number(action.payload)
+    try {
+        yield axios.put(`/api/status/remove/${id}`);
+        yield put({type: 'FETCH_QUEST_DETAILS', payload: action.payload})
+    } catch (error) {
+        console.log('Quest update request failed', error);
+    }
+}
+
 function* statusSaga() {
     yield takeLatest('SET_START', startStatus),
     yield takeLatest('SET_FINISH', finishStatus),
-    yield takeLatest('SET_RESET', resetStatus)
+    yield takeLatest('SET_RESET', resetStatus),
+    yield takeLatest('SET_REMOVE', removeStatus)
 }
 
 export default statusSaga;

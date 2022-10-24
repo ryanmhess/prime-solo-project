@@ -45,16 +45,35 @@ router.delete('/:id', (req, res) => {
 
 router.put('/:id', (req, res) => {
 	console.log('In the POST quest router', req.body);
-    const category_id = Number(req.body.category_id);
+    const id = req.params.id;
+	const category_id = Number(req.body.category_id);
     const description = req.body.description;
 	const score = Number(req.body.score);
 	const sqlText = `
 		UPDATE "quest"
 			SET "category_id" = $2, "description" = $3, "score" = $4
 			WHERE "id" = $1;
-		
 	`;
-    const sqlValues = [req.params.id, category_id, description, score];
+    const sqlValues = [id, category_id, description, score];
+	pool.query(sqlText, sqlValues)
+		.then((postRes) => {
+			res.sendStatus(201)
+		})
+		.catch((postErr) => {
+			console.log('Failed to post quest', postErr);
+			res.sendStatus(500);
+		});
+});
+
+router.put('/score/:id', (req, res) => {
+	console.log('In the POST quest router', req.body);
+    const username = req.body.username
+	const sqlText = `
+		UPDATE "user"
+			SET total_score = (SELECT SUM("quest".score) FROM "quest" WHERE "quest".child_id = "user".id)
+			WHERE username = $1;
+	`;
+    const sqlValues = [username];
 	pool.query(sqlText, sqlValues)
 		.then((postRes) => {
 			res.sendStatus(201)
