@@ -56,4 +56,22 @@ router.put('/reset/:id', (req, res) => {
 		});
 });
 
+router.put('/remove/:id', (req, res) => {
+	console.log('In the PUT status router', req.params.id);
+	const sqlText = `
+		UPDATE "quest"
+			SET "complete" = TRUE
+			WHERE "id" = $1;
+	`;
+    const sqlValues = [req.params.id];
+	pool.query(sqlText, sqlValues)
+		.then((putResetRes) => {
+			res.sendStatus(201)
+		})
+		.catch((putResetErr) => {
+			console.log('Failed to put quest', putResetErr);
+			res.sendStatus(500);
+		});
+});
+
 module.exports = router;

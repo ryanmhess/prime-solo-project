@@ -1,17 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import QuestParentChildItem from './QuestParentChildItem';
 import { styled } from '@mui/material/styles';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import TextField from '@mui/material/TextField';
-import Accordion from '@mui/material/Accordion';
-import AccordionSummary from '@mui/material/AccordionSummary';
-import AccordionDetails from '@mui/material/AccordionDetails';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import MuiAccordion from '@mui/material/Accordion';
 import MuiAccordionSummary from '@mui/material/AccordionSummary';
 import MuiAccordionDetails from '@mui/material/AccordionDetails';
@@ -66,27 +57,35 @@ function QuestParentChild({ child }) {
     borderTop: '1px solid rgba(0, 0, 0, .125)',
   }));
 
-  const [expanded, setExpanded] = React.useState('panel1');
+  const [expanded, setExpanded] = useState('');
 
   const handleChange = (panel) => (event, newExpanded) => {
     setExpanded(newExpanded ? panel : false);
   };
 
   return (
-    <Accordion expanded={expanded === 'panel1'} onChange={handleChange('panel1')}>
+    <Accordion expanded={expanded === child.id} onChange={handleChange(child.id)}> 
       <AccordionSummary aria-controls="panel1d-content" id="panel1d-header" >
-        <Typography>{child.username}</Typography>
+        <Typography variant="h4">
+          <span>{child.username}</span>
+        </Typography>
       </AccordionSummary>
       <AccordionDetails>
-        <Stack spacing={16} direction="row" justifyContent="center" alignItems="center">
-          <Typography>Category</Typography>
+        <Stack spacing={8} direction="row" justifyContent="center" alignItems="center">
+          <Typography>
+            <span>CATEGORY</span>
+          </Typography>
           <Stack spacing={4} direction="row" justifyContent="center" alignItems="center">
-            <Typography>Status</Typography>
-            <Typography>Scored</Typography>
+            <Typography>
+              <span>STATUS</span>
+            </Typography>
+            <Typography>
+              <span>SCORED</span>
+            </Typography>
           </Stack>
         </Stack>
       </AccordionDetails>
-      {quests.map((quest, i) => (
+      {quests.map((quest) => (
         <AccordionDetails key={quest.id} direction="column">
           <QuestParentChildItem quest={quest} />
         </AccordionDetails>

@@ -9,6 +9,7 @@ function* fetchChildDetails(action) {
     try {
         const response = yield axios.get(`/api/list/child/${id}`);
         yield put({ type: 'SET_CHILD_DETAILS', payload: response.data }), console.log('response data:', response.data);
+        yield put({ type: 'FETCH_SCORE', payload: id});
     } catch (error) {
         console.log('User get request failed', error);
     }

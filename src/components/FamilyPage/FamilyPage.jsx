@@ -8,6 +8,8 @@ import Grid from '@mui/material/Grid';
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import Divider from '@mui/material/Divider';
+import FamilyAddForm from '../FamilyAddPage/FamilyAddForm';
 
 //  function that handles the removal of child account from db
 function FamilyPage() {
@@ -36,38 +38,34 @@ function FamilyPage() {
 
 	return (
 	<>
-						
-		{user.is_parent ? 
-			<Card style={{maxWidth:700, margin:"25% 2.5%", padding: "20px 5px"}}>
-        <CardContent>
-          <Typography align="center" gutterBottom variant="h4">Child Accounts</Typography>
-            <Grid container spacing={2}>
-              {children.map(child => (
-							<Grid xs={12} item key={child.id}>
-								<FamilyItem child={child}/>
+		<Typography className="mobile-title" align="center" variant="h3">
+      <span>Quest - Logger</span>
+    </Typography>				
+		<div className='between-view'>
+			<Stack direction="column" spacing={-2} alignItems="center">
+				<Card sx={{ width: '80%', my: '10%', mt: 5, opacity: '80%'}}>
+					<CardContent>
+						<Typography align="center" gutterBottom variant="h4"><span>REGISTER CHILD</span></Typography>
+						<FamilyAddForm />
+					</CardContent>
+				</Card>
+				<Card sx={{ width: '80%', my: '10%', mt: 5, opacity: '80%'}}>
+					<CardContent>
+						<Typography align="center" gutterBottom variant="h4"><span>CHILD ACCOUNTS</span></Typography>
+						<Divider />
+							<Grid sx={{mt: 0.5}} container spacing={2}>
+								{children.map(child => (
+								<Grid xs={12} item key={child.id}>
+									<FamilyItem child={child}/>
+								</Grid>
+								))}
 							</Grid>
-							))}
-							
-              
-              <Grid xs={12} item>
-              </Grid>
-              <Grid xs={12} item>
-              </Grid>
-              <Grid xs={12} item>
-              </Grid>
-              <Grid xs={12} item>
-              </Grid>
-              <Grid xs={12} item>
-                <Stack style={{padding: "20px 0px 0px 0px"}} spacing={7} direction="row" justifyContent="center" alignItems="center">
-                      <Button variant="outlined"  className="mobile-nav-btn" onClick={addChildPage}>Add Child</Button>
-                </Stack>
-              </Grid>
-            </Grid>
-        </CardContent>
-      </Card>
-		: ""}
+					</CardContent>
+				</Card>
+			</Stack>
+		</div>
 		<Stack className="mobile-nav" direction="row">
-        <Button variant="outlined" className="mobile-nav-btn" onClick={homePage}>Back</Button>
+        <Button sx={{opacity: '80%'}} color='error' variant="contained" className="mobile-nav-btn" onClick={homePage}><span>BACK</span></Button>
     </Stack>
 	</>
 	)

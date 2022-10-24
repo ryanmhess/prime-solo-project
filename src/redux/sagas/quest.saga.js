@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { takeLatest } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
 
 function* createQuest(action) {
     // console.log('In create quest SAGA', action.payload);
@@ -25,6 +25,17 @@ function* updateQuest(action) {
     const id = action.payload.id
     try {
         yield axios.put(`/api/quest/${id}`, action.payload);
+        yield put({ type: 'UPDATE_SCORE', payload: action.payload});
+    } catch (error) {
+        console.log('Quest update request failed', error);
+    }
+}
+
+function* updateScore(action) {
+    console.log('In update quest score SAGA', action.payload);
+    const id = action.payload.id
+    try {
+        yield axios.put(`/api/quest/score/${id}`, action.payload);
     } catch (error) {
         console.log('Quest update request failed', error);
     }
@@ -33,7 +44,8 @@ function* updateQuest(action) {
 function* questSaga() {
     yield takeLatest('CREATE_QUEST', createQuest),
     yield takeLatest('DELETE_QUEST', deleteQuest),
-    yield takeLatest('UPDATE_QUEST', updateQuest)
+    yield takeLatest('UPDATE_QUEST', updateQuest),
+    yield takeLatest('UPDATE_SCORE', updateScore)
 }
 
 export default questSaga;

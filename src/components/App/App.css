@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'WildFont';
+  src: url(../../../public/TheWildBreathOfZelda-15Lv.ttf);
+}
+
+span{
+  font-family: 'WildFont';
+}
+
 html,
 body,
 #react-root {
@@ -5,7 +14,6 @@ body,
 }
 
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   margin: 0px;
 }
 
@@ -119,7 +127,10 @@ Top Title Bar
 -------------------------------------------------------------------------------- */
 
 .mobile-title {
-  background: #F1F1F1;
+  /* background: #F1F1F1; */
+  background-image: url(../../../public/borderBar.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
   position: fixed;
   top: 0;
   height: 65px;
@@ -134,7 +145,10 @@ Bottom Nav Bar
 -------------------------------------------------------------------------------- */
 
 .mobile-nav {
-  background: #F1F1F1;
+  /* background: #F1F1F1; */
+  background-image: url(../../../public/borderBar.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
   position: fixed;
   bottom: 0;
   height: 65px;
@@ -144,6 +158,9 @@ Bottom Nav Bar
   align-items: center;
 }
 
+.mobile-nav-btn {
+  color: black;
+}
 /* --------------------------------------------------------------------------------
 Middle Area
 -------------------------------------------------------------------------------- */
@@ -153,18 +170,28 @@ Middle Area
   position: fixed;
   bottom: 65px;
   top: 65px;
-  background-color: rgb(173, 173, 173);
+  /* background-color: rgb(173, 173, 173); */
+  background-image: url(../../../public/bodyTemplate.jpeg);
+  background-repeat: no-repeat;
+  background-size: cover;
   width: 100%;
   overflow: auto;
 }
 
+/* .in-between {
+  margin: auto;
+  position: fixed;
+  top: 75px;
+  bottom: 75px;
+  overflow: auto;
+} */
 
 /* --------------------------------------------------------------------------------
 Title Background
 -------------------------------------------------------------------------------- */
 
 body {
-  background-color: aquamarine;
+  background-color: rgb(81, 81, 81);
 }
 
 /* --------------------------------------------------------------------------------
@@ -172,5 +199,5 @@ Radio Button Spacing
 -------------------------------------------------------------------------------- */
 
 .radio-btn-control {
-  max-width: 10%;
+  max-width: 8%;
 }
